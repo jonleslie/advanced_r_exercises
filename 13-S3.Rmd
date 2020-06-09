@@ -1,0 +1,276 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(sloop)
+```
+
+
+# 13.2 Basics
+```{r}
+f <- factor(c("a", "b", "c"))
+
+print(f)
+print(unclass(f))
+```
+
+```{r}
+s3_dispatch(print(f))
+```
+This is an S3 method - a fucntion wihta a special naming scheme, `generic.class()`. 
+
+```{r}
+ftype(t.test)
+ftype(print)
+ftype(t.data.frame)
+```
+
+## 13.2.1 Exercises
+```{r 13.2.1.4}
+ftype(mean)
+```
+
+```{r 13.2.1.5}
+x <- ecdf(rpois(100, 10))
+x
+
+sloop::otype(x)
+attributes(x)
+typeof(x)
+```
+
+```{r 13.2.1.6}
+x <- table(rpois(100, 5))
+x
+
+typeof(x)
+attributes(x)
+otype(x)
+```
+
+# 13.3 Classes
+```{r}
+x <- structure(list(), class = "my_class")
+
+class(x)
+inherits(x, "my_class")
+otype(x)
+```
+
+```{r}
+mod <- lm(log(mpg) ~ log(disp), data = mtcars)
+class(mod)
+typeof(mod)
+print(mod)
+otype(mod)
+attributes(mod)
+
+class(mod) <- "Date"
+otype(mod)
+print(mod)
+```
+
+## 13.3.1 Constructors
+```{r}
+new_Date <- function(x = double()) {
+  stopifnot(is.double(x))
+  structure(x, class = "Date")
+}
+
+new_Date(c(-1, 0, 1))
+x <- new_Date(c(-1, 0, 1))
+```
+
+## 13.3.2 Validators
+```{r}
+new_factor <- function(x = integer(), levels = character()) {
+  stopifnot(is.integer(x))
+  stopifnot(is.character(levels))
+  
+  structure(
+    x, 
+    levels = levels, 
+    class = "factor"
+  )
+}
+
+new_factor(1:5, "a")
+```
+
+```{r}
+validate_factor <- function(x) {
+  values <- unclass(x)
+  levels <- attr(x, "levels")
+  
+  if (!all(!is.na(values) & values > 0)) {
+    stop(
+      "All `x` values must be non-missing and greater than zero",
+      call. = FALSE
+    )
+  }
+  
+  if (length(levels) < max(values)) {
+    stop(
+      "There must be at least as many `levels` as possible values in `x`",
+      call. = FALSE
+    )
+  }
+  x
+  
+}
+
+validate_factor(new_factor(1:5, "a"))
+# validate_factor(new_factor(1:5, rep("a", times = 5)))
+```
+
+## 13.3.3 Helpers
+```{r}
+
+```
+
+## 13.3.4 Exercises
+```{r 13.3.4.1}
+df <- data.frame()
+attributes(df)
+otype(df)
+typeof(df)
+ftype(data.frame)
+```
+
+```{r 13.3.4.2}
+factor
+```
+
+```{r}
+?match
+intersect <- function(x, y) y[match(x, y, nomatch = 0)]
+intersect # the R function in base is slightly more careful
+intersect(1:10, 7:20)
+match(1:10, 7:20)
+match(c("a", "a", "b"), unique(c("a", "a", "b")))
+match(c("a", "a", "b", "c"), c("a", "a", "b"))
+setdiff(c("a", "a", "b", "c"), c("a", "a", "b"))
+
+```
+
+```{r 13.3.4.4}
+help(C)
+```
+
+```{r 13.3.4.5}
+# utils::as.roman()
+x <- as.roman(1:10)
+x
+typeof(x)
+otype(x)
+attributes(x)
+unclass(x)
+```
+```{r}
+new_roman <- function(x = integer()) {
+  stopifnot(is.integer(x))
+  structure(
+    x,
+    class = "roman"
+  )
+}
+
+new_roman(1:10)
+
+```
+
+```{r}
+validate_roman <- function(x) {
+  values <- unclass(x)
+  if(any(values < 1 | values > 3899)) {
+    stop(
+      "Roman numerals must fall between 1 and 3899",
+      call. = FALSE
+    )
+  }
+  x
+}
+
+validate_roman(new_roman(1:10))
+validate_roman(new_roman(1.3))
+integer(1.3)
+```
+
+```{r}
+roman <- function(x = integer()) {
+  x <- as.integer(x)
+  validate_roman(new_roman(x))
+}
+
+roman(1:10)
+roman(1.3)
+as.integer(1.2)
+```
+
+# 13.4 Generics and methods
+```{r}
+x <- Sys.Date()
+s3_dispatch(print(x))
+ftype(print)
+```
+```{r}
+s3_methods_generic("mean")
+s3_methods_generic("print")
+s3_methods_class("ordered")
+s3_methods_generic("relevel")
+```
+
+### Exercises
+```{r 13.4.4.1}
+t
+t.test
+
+ftype(t.test)
+
+ftype(factor)
+tools::nonS3methods("stats")
+```
+```{r}
+x <- structure(
+  1:10,
+  class = "test"
+)
+t(x)
+x
+```
+
+```{r 13.4.4.2}
+
+x <- table(1:10)
+attributes(x)
+s3_methods_class("table")
+```
+```{r 13.4.4.3}
+s3_methods_class("ecdf")
+```
+```{r 13.4.4.4}
+nrow(s3_methods_generic("print"))
+# ftype(print)
+# s3_get_method(print.Date)
+```
+
+```{r 13.4.4.5}
+help("UseMethod")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

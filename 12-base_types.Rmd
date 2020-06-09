@@ -1,0 +1,55 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# 12 Base types
+
+```{r}
+library(sloop)
+```
+
+## Base versus OO objects
+```{r}
+# A base object:
+is.object(1:10)
+sloop::otype(1:10)
+
+# An OO object
+is.object(mtcars)
+sloop::otype(mtcars)
+
+
+```
+Technically, the difference between base and OO objects is that the OO objects have a "class" attribute
+```{r}
+x <- matrix(1:4, nrow = 2)
+class(x)
+attributes(x)
+sloop::otype(x)
+
+sloop::s3_class(x)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

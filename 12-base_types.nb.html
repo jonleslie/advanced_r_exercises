@@ -1729,7 +1729,7 @@ $(document).ready(function () {
 </style>
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("03-vectors.Rmd");
+  window.initializeSourceEmbed("12-base_types.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
@@ -1767,432 +1767,80 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
-<div id="chapter-3---vectors" class="section level1">
-<h1>Chapter 3 - Vectors</h1>
-<div id="atomic-vectors" class="section level2">
-<h2>3.2 Atomic vectors</h2>
-<div id="exercises" class="section level3">
-<h3>3.2.5 Exercises</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuP3Jhd1xueHggPC0gcmF3KDIpXG5cbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r ?raw xx &lt;- raw(2)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYygxLCBGQUxTRSlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r c(1, FALSE)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMFxuIn0= -->
-<pre><code>[1] 1 0</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYyhcXGFcXCwgMSlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r c(, 1)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFxcYVxcIFxcMVxcXG4ifQ== -->
-<pre><code>[1] \a\ \1\</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYyhUUlVFLCAxTClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r c(TRUE, 1L)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMVxuIn0= -->
-<pre><code>[1] 1 1</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
+<div id="base-types" class="section level1">
+<h1>12 Base types</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
-</div>
-<div id="attributes" class="section level2">
-<h2>3.3 Attributes</h2>
+<div id="base-versus-oo-objects" class="section level2">
+<h2>Base versus OO objects</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYSA8LSAxOjRcbmF0dHIoYSwgXFx4XFwpIDwtIFxcYWJjZGVmXFxcbmF0dHIoYSwgXFx4XFwpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r a &lt;- 1:4 attr(a, ) &lt;- <br />
-attr(a, )</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBBIGJhc2Ugb2JqZWN0OlxuaXMub2JqZWN0KDE6MTApXG5gYGAifQ== -->
+<pre class="r"><code># A base object:
+is.object(1:10)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFxcYWJjZGVmXFxcbiJ9 -->
-<pre><code>[1] \abcdef\</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIEZBTFNFXG4ifQ== -->
+<pre><code>[1] FALSE</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYXR0cihhLCBcXHlcXCkgPC0gNDo2XG5zdHIoYXR0cmlidXRlcyhhKSlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r attr(a, ) &lt;- 4:6 str(attributes(a))</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2xvb3A6Om90eXBlKDE6MTApXG5gYGAifQ== -->
+<pre class="r"><code>sloop::otype(1:10)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAyXG4gJCB4OiBjaHIgXFxhYmNkZWZcXFxuICQgeTogaW50IFsxOjNdIDQgNSA2XG4ifQ== -->
-<pre><code>List of 2
- $ x: chr \abcdef\
- $ y: int [1:3] 4 5 6</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYmFzZVwiXG4ifQ== -->
+<pre><code>[1] &quot;base&quot;</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYSA8LSBzdHJ1Y3R1cmUoXG4gIDE6NCxcbiAgeCA9IFxcYWJjZGVmXFwsXG4gIHkgPSA0OjZcbilcbnN0cihhdHRyaWJ1dGVzKGEpKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r a &lt;- structure( 1:4, x = , y = 4:6 ) str(attributes(a))</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBBbiBPTyBvYmplY3RcbmlzLm9iamVjdChtdGNhcnMpXG5gYGAifQ== -->
+<pre class="r"><code># An OO object
+is.object(mtcars)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAyXG4gJCB4OiBjaHIgXFxhYmNkZWZcXFxuICQgeTogaW50IFsxOjNdIDQgNSA2XG4ifQ== -->
-<pre><code>List of 2
- $ x: chr \abcdef\
- $ y: int [1:3] 4 5 6</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 -->
+<pre><code>[1] TRUE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2xvb3A6Om90eXBlKG10Y2FycylcbmBgYCJ9 -->
+<pre class="r"><code>sloop::otype(mtcars)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUzNcIlxuIn0= -->
+<pre><code>[1] &quot;S3&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<div id="exercises-1" class="section level3">
-<h3>3.3.4 Exercises</h3>
+<p>Technically, the difference between base and OO objects is that the OO objects have a “class” attribute</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2V0TmFtZXNcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r setNames</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBtYXRyaXgoMTo0LCBucm93ID0gMilcbmNsYXNzKHgpXG5gYGAifQ== -->
+<pre class="r"><code>x &lt;- matrix(1:4, nrow = 2)
+class(x)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiZnVuY3Rpb24gKG9iamVjdCA9IG5tLCBubSkgXG57XG4gICAgbmFtZXMob2JqZWN0KSA8LSBubVxuICAgIG9iamVjdFxufVxuPGJ5dGVjb2RlOiAweDdmZTBlZTQxZDE3OD5cbjxlbnZpcm9ubWVudDogbmFtZXNwYWNlOnN0YXRzPlxuIn0= -->
-<pre><code>function (object = nm, nm) 
-{
-    names(object) &lt;- nm
-    object
-}
-&lt;bytecode: 0x7fe0ee41d178&gt;
-&lt;environment: namespace:stats&gt;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibWF0cml4XCJcbiJ9 -->
+<pre><code>[1] &quot;matrix&quot;</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudW5uYW1lXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r unname</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXR0cmlidXRlcyh4KVxuYGBgIn0= -->
+<pre class="r"><code>attributes(x)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiZnVuY3Rpb24gKG9iaiwgZm9yY2UgPSBGQUxTRSkgXG57XG4gICAgaWYgKCFpcy5udWxsKG5hbWVzKG9iaikpKSBcbiAgICAgICAgbmFtZXMob2JqKSA8LSBOVUxMXG4gICAgaWYgKCFpcy5udWxsKGRpbW5hbWVzKG9iaikpICYmIChmb3JjZSB8fCAhaXMuZGF0YS5mcmFtZShvYmopKSkgXG4gICAgICAgIGRpbW5hbWVzKG9iaikgPC0gTlVMTFxuICAgIG9ialxufVxuPGJ5dGVjb2RlOiAweDdmZTBlZGRhN2VjMD5cbjxlbnZpcm9ubWVudDogbmFtZXNwYWNlOmJhc2U+XG4ifQ== -->
-<pre><code>function (obj, force = FALSE) 
-{
-    if (!is.null(names(obj))) 
-        names(obj) &lt;- NULL
-    if (!is.null(dimnames(obj)) &amp;&amp; (force || !is.data.frame(obj))) 
-        dimnames(obj) &lt;- NULL
-    obj
-}
-&lt;bytecode: 0x7fe0edda7ec0&gt;
-&lt;environment: namespace:base&gt;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxueCA8LSAxOjEwXG4jIHJldHVybiBOVUxMXG5ucm93KHgpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r x &lt;- 1:10 # return NULL nrow(x)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
-<pre><code>NULL</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIz4gTlVMTFxubmNvbCh4KVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r #&gt; NULL ncol(x)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
-<pre><code>NULL</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIz4gTlVMTFxuXG4jIFByZXRlbmQgaXQncyBhIGNvbHVtbi12ZWN0b3Jcbk5ST1coeClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r #&gt; NULL</p>
-</div>
-</div>
-</div>
-<div id="pretend-its-a-column-vector" class="section level1">
-<h1>Pretend it’s a column-vector</h1>
-<p>NROW(x)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEwXG4ifQ== -->
-<pre><code>[1] 10</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIz4gWzFdIDEwXG5OQ09MKHgpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r #&gt; [1] 10 NCOL(x)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDFcbiJ9 -->
-<pre><code>[1] 1</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIz4gWzFdIDFcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r #&gt; [1] 1</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxueDEgPC0gYXJyYXkoMTo1LCBjKDEsIDEsIDUpKSAgIyAxIHJvdywgIDEgY29sdW1uLCAgNSBpbiB0aGlyZCBkaW1lbnNpb25cbngyIDwtIGFycmF5KDE6NSwgYygxLCA1LCAxKSkgICMgMSByb3csICA1IGNvbHVtbnMsIDEgaW4gdGhpcmQgZGltZW5zaW9uXG54MyA8LSBhcnJheSgxOjUsIGMoNSwgMSwgMSkpICAjIDUgcm93cywgMSBjb2x1bW4sICAxIGluIHRoaXJkIGRpbWVuc2lvblxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r x1 &lt;- array(1:5, c(1, 1, 5)) # 1 row, 1 column, 5 in third dimension x2 &lt;- array(1:5, c(1, 5, 1)) # 1 row, 5 columns, 1 in third dimension x3 &lt;- array(1:5, c(5, 1, 1)) # 5 rows, 1 column, 1 in third dimension</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc3RydWN0dXJlKDE6NSwgY29tbWVudCA9IFxcbXkgYXR0cmlidXRlXFwpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r structure(1:5, comment = attribute)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMiAzIDQgNVxuIn0= -->
-<pre><code>[1] 1 2 3 4 5</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIz4gWzFdIDEgMiAzIDQgNVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r #&gt; [1] 1 2 3 4 5</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Contrary to other attributes, the comment is not printed (by print or print.default).</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZm9vIDwtIHN0cnVjdHVyZSgxOjUsIGNvbW1lbnQgPSBcXG15IGF0dHJpYnV0ZVxcKVxuXG5hdHRyaWJ1dGVzKGZvbylcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r foo &lt;- structure(1:5, comment = attribute)</p>
-<p>attributes(foo)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiJGNvbW1lbnRcblsxXSBcXG15IGF0dHJpYnV0ZVxcXG4ifQ== -->
-<pre><code>$comment
-[1] \my attribute\</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIz4gJGNvbW1lbnRcbiM+IFsxXSBcXG15IGF0dHJpYnV0ZVxcXG5hdHRyKGZvbywgd2hpY2ggPSBcXGNvbW1lbnRcXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r #&gt; $comment #&gt; [1] attribute<br />
-attr(foo, which = )</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFxcbXkgYXR0cmlidXRlXFxcbiJ9 -->
-<pre><code>[1] \my attribute\</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIz4gWzFdIFxcbXkgYXR0cmlidXRlXFxcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r #&gt; [1] attribute<br />
-</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="factors" class="section level3">
-<h3>3.4.1 FActors</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXR0cmlidXRlcyh4KVxuXG5gYGAifQ== -->
-<pre class="r"><code>attributes(x)
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiJGxldmVsc1xuWzFdIFwiYVwiIFwiYlwiXG5cbiRjbGFzc1xuWzFdIFwiZmFjdG9yXCJcbiJ9 -->
-<pre><code>$levels
-[1] &quot;a&quot; &quot;b&quot;
-
-$class
-[1] &quot;factor&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JhZGUgPC0gb3JkZXJlZChjKFwiYlwiLCBcImJcIiwgXCJhXCIsIFwiY1wiKSwgbGV2ZWxzID0gYyhcImNcIiwgXCJiXCIsIFwiYVwiKSlcbmdyYWRlXG5gYGAifQ== -->
-<pre class="r"><code>grade &lt;- ordered(c(&quot;b&quot;, &quot;b&quot;, &quot;a&quot;, &quot;c&quot;), levels = c(&quot;c&quot;, &quot;b&quot;, &quot;a&quot;))
-grade</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIGIgYiBhIGNcbkxldmVsczogYyA8IGIgPCBhXG4ifQ== -->
-<pre><code>[1] b b a c
-Levels: c &lt; b &lt; a</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="exercises-2" class="section level3">
-<h3>3.4.5 Exercises</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBzYW1wbGUoMToxMCwgMWU0LCByZXBsYWNlID0gVFJVRSlcbnkgPC0gdGFibGUoeClcbnlcbmBgYCJ9 -->
-<pre class="r"><code>x &lt;- sample(1:10, 1e4, replace = TRUE)
-y &lt;- table(x)
-y</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoieFxuICAgMSAgICAyICAgIDMgICAgNCAgICA1ICAgIDYgICAgNyAgICA4ICAgIDkgICAxMCBcbiA5OTggIDk1MCAgOTY2IDEwMTMgMTA2NyAxMDEyIDEwMDggIDk5NyAgOTcyIDEwMTcgXG4ifQ== -->
-<pre><code>x
-   1    2    3    4    5    6    7    8    9   10 
- 998  950  966 1013 1067 1012 1008  997  972 1017 </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHlwZW9mKHkpXG5gYGAifQ== -->
-<pre class="r"><code>typeof(y)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiaW50ZWdlclwiXG4ifQ== -->
-<pre><code>[1] &quot;integer&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXR0cmlidXRlcyh5KVxuYGBgIn0= -->
-<pre class="r"><code>attributes(y)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiJGRpbVxuWzFdIDEwXG5cbiRkaW1uYW1lc1xuJGRpbW5hbWVzJHhcbiBbMV0gXCIxXCIgIFwiMlwiICBcIjNcIiAgXCI0XCIgIFwiNVwiICBcIjZcIiAgXCI3XCIgIFwiOFwiICBcIjlcIiAgXCIxMFwiXG5cblxuJGNsYXNzXG5bMV0gXCJ0YWJsZVwiXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiJGRpbVxuWzFdIDIgMlxuIn0= -->
 <pre><code>$dim
-[1] 10
-
-$dimnames
-$dimnames$x
- [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot;
-
-
-$class
-[1] &quot;table&quot;</code></pre>
+[1] 2 2</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSB0YWJsZShtdGNhcnNbYyhcInZzXCIsIFwiY3lsXCIsIFwiYW1cIildKVxueFxuYGBgIn0= -->
-<pre class="r"><code>x &lt;- table(mtcars[c(&quot;vs&quot;, &quot;cyl&quot;, &quot;am&quot;)])
-x</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2xvb3A6Om90eXBlKHgpXG5gYGAifQ== -->
+<pre class="r"><code>sloop::otype(x)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiLCAsIGFtID0gMFxuXG4gICBjeWxcbnZzICAgNCAgNiAgOFxuICAwICAwICAwIDEyXG4gIDEgIDMgIDQgIDBcblxuLCAsIGFtID0gMVxuXG4gICBjeWxcbnZzICAgNCAgNiAgOFxuICAwICAxICAzICAyXG4gIDEgIDcgIDAgIDBcbiJ9 -->
-<pre><code>, , am = 0
-
-   cyl
-vs   4  6  8
-  0  0  0 12
-  1  3  4  0
-
-, , am = 1
-
-   cyl
-vs   4  6  8
-  0  1  3  2
-  1  7  0  0</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYmFzZVwiXG4ifQ== -->
+<pre><code>[1] &quot;base&quot;</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGV2ZWxzKG10Y2FycyRhbSlcbmBgYCJ9 -->
-<pre class="r"><code>levels(mtcars$am)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2xvb3A6OnMzX2NsYXNzKHgpXG5gYGAifQ== -->
+<pre class="r"><code>sloop::s3_class(x)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
-<pre><code>NULL</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXRjYXJzJGFtXG5gYGAifQ== -->
-<pre class="r"><code>mtcars$am</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAxIDEgMSAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMSAxIDEgMCAwIDAgMCAwIDEgMSAxIDEgMSAxIDFcbiJ9 -->
-<pre><code> [1] 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibWF0cml4XCIgIFwiaW50ZWdlclwiIFwibnVtZXJpY1wiXG4ifQ== -->
+<pre><code>[1] &quot;matrix&quot;  &quot;integer&quot; &quot;numeric&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZjEgPC0gZmFjdG9yKGxldHRlcnMpXG5mMVxuYGBgIn0= -->
-<pre class="r"><code>f1 &lt;- factor(letters)
-f1</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBhIGIgYyBkIGUgZiBnIGggaSBqIGsgbCBtIG4gbyBwIHEgciBzIHQgdSB2IHcgeCB5IHpcbkxldmVsczogYSBiIGMgZCBlIGYgZyBoIGkgaiBrIGwgbSBuIG8gcCBxIHIgcyB0IHUgdiB3IHggeSB6XG4ifQ== -->
-<pre><code> [1] a b c d e f g h i j k l m n o p q r s t u v w x y z
-Levels: a b c d e f g h i j k l m n o p q r s t u v w x y z</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXMuaW50ZWdlcihmMSlcbmBgYCJ9 -->
-<pre class="r"><code>as.integer(f1)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgMSAgMiAgMyAgNCAgNSAgNiAgNyAgOCAgOSAxMCAxMSAxMiAxMyAxNCAxNSAxNiAxNyAxOCAxOSAyMCAyMSAyMiAyMyAyNCAyNSAyNlxuIn0= -->
-<pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGV2ZWxzKGYxKSA8LSByZXYobGV2ZWxzKGYxKSlcbmYxXG5gYGAifQ== -->
-<pre class="r"><code>levels(f1) &lt;- rev(levels(f1))
-f1</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSB6IHkgeCB3IHYgdSB0IHMgciBxIHAgbyBuIG0gbCBrIGogaSBoIGcgZiBlIGQgYyBiIGFcbkxldmVsczogeiB5IHggdyB2IHUgdCBzIHIgcSBwIG8gbiBtIGwgayBqIGkgaCBnIGYgZSBkIGMgYiBhXG4ifQ== -->
-<pre><code> [1] z y x w v u t s r q p o n m l k j i h g f e d c b a
-Levels: z y x w v u t s r q p o n m l k j i h g f e d c b a</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXMuaW50ZWdlcihmMSlcbmBgYCJ9 -->
-<pre class="r"><code>as.integer(f1)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgMSAgMiAgMyAgNCAgNSAgNiAgNyAgOCAgOSAxMCAxMSAxMiAxMyAxNCAxNSAxNiAxNyAxOCAxOSAyMCAyMSAyMiAyMyAyNCAyNSAyNlxuIn0= -->
-<pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>The underlying integer values stay the same, but the levels are changed, making it look like the data as changed.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZjIgPC0gcmV2KGZhY3RvcihsZXR0ZXJzKSlcbmYzIDwtIGZhY3RvcihsZXR0ZXJzLCBsZXZlbHMgPSByZXYobGV0dGVycykpXG5cbmYyXG5gYGAifQ== -->
-<pre class="r"><code>f2 &lt;- rev(factor(letters))
-f3 &lt;- factor(letters, levels = rev(letters))
-
-f2</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSB6IHkgeCB3IHYgdSB0IHMgciBxIHAgbyBuIG0gbCBrIGogaSBoIGcgZiBlIGQgYyBiIGFcbkxldmVsczogYSBiIGMgZCBlIGYgZyBoIGkgaiBrIGwgbSBuIG8gcCBxIHIgcyB0IHUgdiB3IHggeSB6XG4ifQ== -->
-<pre><code> [1] z y x w v u t s r q p o n m l k j i h g f e d c b a
-Levels: a b c d e f g h i j k l m n o p q r s t u v w x y z</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZjNcbmBgYCJ9 -->
-<pre class="r"><code>f3</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBhIGIgYyBkIGUgZiBnIGggaSBqIGsgbCBtIG4gbyBwIHEgciBzIHQgdSB2IHcgeCB5IHpcbkxldmVsczogeiB5IHggdyB2IHUgdCBzIHIgcSBwIG8gbiBtIGwgayBqIGkgaCBnIGYgZSBkIGMgYiBhXG4ifQ== -->
-<pre><code> [1] a b c d e f g h i j k l m n o p q r s t u v w x y z
-Levels: z y x w v u t s r q p o n m l k j i h g f e d c b a</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>For f2 and f3 either the order of the factor elements or its levels are being reversed. For f1 both transformations are occurring.</p>
-</div>
-<div id="data-frames-and-tiblles" class="section level2">
-<h2>3.6 Data frames and tiblles</h2>
-<div id="list-columns" class="section level3">
-<h3>3.6.6 LIst columns</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYkeVsxXVxuXG5gYGAifQ== -->
-<pre class="r"><code>df$y[1]
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSAxIDJcbiJ9 -->
-<pre><code>[[1]]
-[1] 1 2</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWJibGUpXG5gYGAifQ== -->
-<pre class="r"><code>library(tibble)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoicGFja2FnZSDigJh0aWJibGXigJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiAzLjYuMlxuIn0= -->
-<pre><code>package ‘tibble’ was built under R version 3.6.2</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGliYmxlKFxuICB4ID0gMTozLFxuICB5ID0gbGlzdCgxOjIsIDE6MywgMTo0KVxuKVxuYGBgIn0= -->
-<pre class="r"><code>tibble(
-  x = 1:3,
-  y = list(1:2, 1:3, 1:4)
-)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUE2MVNTMDdETUJDZE9IR2hrVUNSZW81RVJXell3UUp4QUFSU2Q4aDFUWWxJN1pDNEFuYWNHSEVCYXNheGpWSUxkWVVYbnVmeHZEY2YrL1o2Y1o0dmNnQklJWjNnVGhFQ3ZiKzdLUzhBTW9LSEJES1lXdnVHMXpNRTFua3lNT3lsTzFzODgvYlQrd0x4bEt0Tnk3aCtxS1h1eFV0MG15MVpMMGFxaWJjN3k3U0tWK0RXNWRlKzlURStHekhPcHVhZzF2RS9haFdIdFBaR1J5WGJpQjVCTVFqK3p0T0Q5eWg4MnFuWEtsQnNUdktCbXpIbU85YmxEZXVEYm5EbUs2Wlo5ZGdoLzQ5U2psU3JheVdSUk94NzBZaWNkSkdqMkVwYnlhcmtUMXY1WEo3TmJRWS9EaGlOSmgxaDRuSm14bXRScnpVUmNsMUxFWXB2MkZJMDRZOWd5MFBIVmR2aE53bXRvTGV2dE5Jc3hPVmNOY0hqM21MM0EvL055TWJEQWdBQSJ9 -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["x"],"name":[1],"type":["int"],"align":["right"]},{"label":["y"],"name":[2],"type":["list"],"align":["right"]}],"data":[{"1":"1","2":"<int [2]>"},{"1":"2","2":"<int [3]>"},{"1":"3","2":"<int [4]>"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="exercises-3" class="section level3">
-<h3>3.6.8 Exercises</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MCwibnJvdyI6MH0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyMVAyd3JDTUF6Tkx0MVlZU0w0SFJaa0lQc0E4UU5FWWE5MVZoblVkblFGL2ZwcFd0Y0h4L0xRbnB6a0pEbW5RMVBSaGdKQUFrbUdMMEVJNUhJK2JtdUFOTVlrZ2hRSzk3K3h2QUVmZndXaStGTU1DTllMeGNMb0Z3c041Wks2bFh3STZrRFNHN2VjM1EzcU1CdG5rbHozdHRNS1JiRzdoOHpFa1prUmVjWDJyR1k3TjlqVHZ5aVhzVnNWZjZZUlpCcVJDZlhvbEFnM1MzNFZja3BXNk5BYlpMM3BsQTBPa0IyWTFaYUhQdHBxR1JqdkNjWXYxOThjYm40QkFBQT0ifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[],"data":[],"options":{"columns":{"min":{},"max":[10],"total":[0]},"rows":{"min":[10],"max":[10],"total":[0]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGZbYygxLDEsMSksXVxuXG5gYGAifQ== -->
-<pre class="r"><code>df[c(1,1,1),]
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMSAxXG4ifQ== -->
-<pre><code>[1] 1 1 1</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-</div>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyBDaGFwdGVyIDMgLSBWZWN0b3JzCgojIyAzLjIgQXRvbWljIHZlY3RvcnMKIyMjIDMuMi41IEV4ZXJjaXNlcwpgYGB7ciAzLjIuNS4xfQo/cmF3Cnh4IDwtIHJhdygyKQoKYGBgCgpgYGB7ciAzLjIuNS4yfQpjKDEsIEZBTFNFKQpjKCJhIiwgMSkKYyhUUlVFLCAxTCkKCmBgYAoKYGBge3IgMy4yLjUuM30KCmBgYAoKIyMgMy4zIEF0dHJpYnV0ZXMKYGBge3J9CmEgPC0gMTo0CmF0dHIoYSwgIngiKSA8LSAiYWJjZGVmIgphdHRyKGEsICJ4IikKCmF0dHIoYSwgInkiKSA8LSA0OjYKc3RyKGF0dHJpYnV0ZXMoYSkpCgphIDwtIHN0cnVjdHVyZSgKICAxOjQsCiAgeCA9ICJhYmNkZWYiLAogIHkgPSA0OjYKKQpzdHIoYXR0cmlidXRlcyhhKSkKYGBgCgojIyMgMy4zLjQgRXhlcmNpc2VzCmBgYHtyIDMuMy40LjF9CnNldE5hbWVzCnVubmFtZQpgYGAKCmBgYHtyIDMuMy40LjJ9CnggPC0gMToxMAojIHJldHVybiBOVUxMCm5yb3coeCkKIz4gTlVMTApuY29sKHgpCiM+IE5VTEwKCiMgUHJldGVuZCBpdCdzIGEgY29sdW1uLXZlY3RvcgpOUk9XKHgpCiM+IFsxXSAxMApOQ09MKHgpCiM+IFsxXSAxCmBgYAoKYGBge3IgMy4zLjQuM30KeDEgPC0gYXJyYXkoMTo1LCBjKDEsIDEsIDUpKSAgIyAxIHJvdywgIDEgY29sdW1uLCAgNSBpbiB0aGlyZCBkaW1lbnNpb24KeDIgPC0gYXJyYXkoMTo1LCBjKDEsIDUsIDEpKSAgIyAxIHJvdywgIDUgY29sdW1ucywgMSBpbiB0aGlyZCBkaW1lbnNpb24KeDMgPC0gYXJyYXkoMTo1LCBjKDUsIDEsIDEpKSAgIyA1IHJvd3MsIDEgY29sdW1uLCAgMSBpbiB0aGlyZCBkaW1lbnNpb24KYGBgCgpgYGB7ciAzLjMuNC40fQpzdHJ1Y3R1cmUoMTo1LCBjb21tZW50ID0gIm15IGF0dHJpYnV0ZSIpCiM+IFsxXSAxIDIgMyA0IDUKYGBgCgpDb250cmFyeSB0byBvdGhlciBhdHRyaWJ1dGVzLCB0aGUgY29tbWVudCBpcyBub3QgcHJpbnRlZCAoYnkgcHJpbnQgb3IgcHJpbnQuZGVmYXVsdCkuCgpgYGB7cn0KZm9vIDwtIHN0cnVjdHVyZSgxOjUsIGNvbW1lbnQgPSAibXkgYXR0cmlidXRlIikKCmF0dHJpYnV0ZXMoZm9vKQojPiAkY29tbWVudAojPiBbMV0gIm15IGF0dHJpYnV0ZSIKYXR0cihmb28sIHdoaWNoID0gImNvbW1lbnQiKQojPiBbMV0gIm15IGF0dHJpYnV0ZSIKYGBgCgojIyMgMy40LjEgRkFjdG9ycwpgYGB7cn0KeCA8LSBmYWN0b3IoYygiYSIsICJiIiwgImIiLCAiYSIpKQp4Cgp0eXBlb2YoeCkKYXR0cmlidXRlcyh4KQpgYGAKCmBgYHtyfQpncmFkZSA8LSBvcmRlcmVkKGMoImIiLCAiYiIsICJhIiwgImMiKSwgbGV2ZWxzID0gYygiYyIsICJiIiwgImEiKSkKZ3JhZGUKYGBgCgojIyMgMy40LjUgRXhlcmNpc2VzCmBgYHtyIDMzLjQuNS4xfQp4IDwtIHNhbXBsZSgxOjEwLCAxZTQsIHJlcGxhY2UgPSBUUlVFKQp5IDwtIHRhYmxlKHgpCnkKdHlwZW9mKHkpCmF0dHJpYnV0ZXMoeSkKCnggPC0gdGFibGUobXRjYXJzW2MoInZzIiwgImN5bCIsICJhbSIpXSkKeApsZXZlbHMobXRjYXJzJGFtKQptdGNhcnMkYW0KYGBgCgpgYGB7ciAzLjQuNS4yfQpmMSA8LSBmYWN0b3IobGV0dGVycykKZjEKYXMuaW50ZWdlcihmMSkKbGV2ZWxzKGYxKSA8LSByZXYobGV2ZWxzKGYxKSkKZjEKYXMuaW50ZWdlcihmMSkKYGBgClRoZSB1bmRlcmx5aW5nIGludGVnZXIgdmFsdWVzIHN0YXkgdGhlIHNhbWUsIGJ1dCB0aGUgbGV2ZWxzIGFyZSBjaGFuZ2VkLCBtYWtpbmcgaXQgbG9vayBsaWtlIHRoZSBkYXRhIGFzIGNoYW5nZWQuCgpgYGB7ciAzLjQuNS4zfQpmMiA8LSByZXYoZmFjdG9yKGxldHRlcnMpKSAjIHJldmVyc2VzIGVsZW1lbnQgb3JkZXIgKG9ubHkpCmYzIDwtIGZhY3RvcihsZXR0ZXJzLCBsZXZlbHMgPSByZXYobGV0dGVycykpICAjIHJldmVyc2VzIGZhY3RvciBsZXZlbCBvcmRlciAob25seSkKCmYyCmYzCgpgYGAKRm9yIGYyIGFuZCBmMyBlaXRoZXIgdGhlIG9yZGVyIG9mIHRoZSBmYWN0b3IgZWxlbWVudHMgb3IgaXRzIGxldmVscyBhcmUgYmVpbmcgcmV2ZXJzZWQuIEZvciBmMSBib3RoIHRyYW5zZm9ybWF0aW9ucyBhcmUgb2NjdXJyaW5nLgoKCiMjIDMuNiBEYXRhIGZyYW1lcyBhbmQgdGlibGxlcwojIyMgMy42LjYgTElzdCBjb2x1bW5zCmBgYHtyfQpkZiA8LSBkYXRhLmZyYW1lKHggPSAxOjMpCmRmJHkgPC0gIGxpc3QoMToyLCAxOjMsIDE6NCkKZGYKCmRhdGEuZnJhbWUoCiAgeCA9IDE6MywgCiAgeSA9IEkobGlzdCgxOjIsIDE6MywgMTo0KSkKKQoKZGYkeVsxXQpgYGAKCmBgYHtyfQpsaWJyYXJ5KHRpYmJsZSkKdGliYmxlKAogIHggPSAxOjMsCiAgeSA9IGxpc3QoMToyLCAxOjMsIDE6NCkKKQpgYGAKCiMjIyAzLjYuOCBFeGVyY2lzZXMKYGBge3IgMy42LjguMX0KZGYgPC0gZGF0YS5mcmFtZSgpCmRmCmBgYAoKYGBge3IgMy42LjguMn0KZGYgPC0gZGF0YS5mcmFtZSh4ID0gMTozKQojIHJvdy5uYW1lcyhkZikgPC0gYygieCIsICJ5IiwgInkiKQoKcm93Lm5hbWVzKGRmKSA8LSBjKCJ4IiwgInkiLCAieiIpCmRmW2MoMSwgMSwgMSksICwgZHJvcCA9IEZBTFNFXQojPiAgICAgeAojPiB4ICAgMQojPiB4LjEgMQojPiB4LjIgMQoKZGZbYygxLDEsMSksXQpgYGAK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyAxMiBCYXNlIHR5cGVzCgpgYGB7cn0KbGlicmFyeShzbG9vcCkKYGBgCgojIyBCYXNlIHZlcnN1cyBPTyBvYmplY3RzCmBgYHtyfQojIEEgYmFzZSBvYmplY3Q6CmlzLm9iamVjdCgxOjEwKQpzbG9vcDo6b3R5cGUoMToxMCkKCiMgQW4gT08gb2JqZWN0CmlzLm9iamVjdChtdGNhcnMpCnNsb29wOjpvdHlwZShtdGNhcnMpCgoKYGBgClRlY2huaWNhbGx5LCB0aGUgZGlmZmVyZW5jZSBiZXR3ZWVuIGJhc2UgYW5kIE9PIG9iamVjdHMgaXMgdGhhdCB0aGUgT08gb2JqZWN0cyBoYXZlIGEgImNsYXNzIiBhdHRyaWJ1dGUKYGBge3J9CnggPC0gbWF0cml4KDE6NCwgbnJvdyA9IDIpCmNsYXNzKHgpCmF0dHJpYnV0ZXMoeCkKc2xvb3A6Om90eXBlKHgpCgpzbG9vcDo6czNfY2xhc3MoeCkKYGBgCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoK</div>
 
 
 

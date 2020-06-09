@@ -1729,7 +1729,7 @@ $(document).ready(function () {
 </style>
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("03-vectors.Rmd");
+  window.initializeSourceEmbed("13-S3.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
@@ -1767,432 +1767,649 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
-<div id="chapter-3---vectors" class="section level1">
-<h1>Chapter 3 - Vectors</h1>
-<div id="atomic-vectors" class="section level2">
-<h2>3.2 Atomic vectors</h2>
-<div id="exercises" class="section level3">
-<h3>3.2.5 Exercises</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuP3Jhd1xueHggPC0gcmF3KDIpXG5cbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r ?raw xx &lt;- raw(2)</p>
-<pre><code></code></pre>
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="basics" class="section level1">
+<h1>13.2 Basics</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZiA8LSBmYWN0b3IoYyhcImFcIiwgXCJiXCIsIFwiY1wiKSlcblxucHJpbnQoZilcbmBgYCJ9 -->
+<pre class="r"><code>f &lt;- factor(c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))
+
+print(f)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIGEgYiBjXG5MZXZlbHM6IGEgYiBjXG4ifQ== -->
+<pre><code>[1] a b c
+Levels: a b c</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQodW5jbGFzcyhmKSlcbmBgYCJ9 -->
+<pre class="r"><code>print(unclass(f))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMiAzXG5hdHRyKCxcImxldmVsc1wiKVxuWzFdIFwiYVwiIFwiYlwiIFwiY1wiXG4ifQ== -->
+<pre><code>[1] 1 2 3
+attr(,&quot;levels&quot;)
+[1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYygxLCBGQUxTRSlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r c(1, FALSE)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuczNfZGlzcGF0Y2gocHJpbnQoZikpXG5cbmBgYCJ9 -->
+<pre class="r"><code>s3_dispatch(print(f))
+</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMFxuIn0= -->
-<pre><code>[1] 1 0</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYyhcXGFcXCwgMSlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r c(, 1)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFxcYVxcIFxcMVxcXG4ifQ== -->
-<pre><code>[1] \a\ \1\</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYyhUUlVFLCAxTClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r c(TRUE, 1L)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMVxuIn0= -->
-<pre><code>[1] 1 1</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiPT4gcHJpbnQuZmFjdG9yXG4gKiBwcmludC5kZWZhdWx0XG4ifQ== -->
+<pre><code>=&gt; print.factor
+ * print.default</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>This is an S3 method - a fucntion wihta a special naming scheme, <code>generic.class()</code>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnR5cGUodC50ZXN0KVxuYGBgIn0= -->
+<pre class="r"><code>ftype(t.test)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUzNcIiAgICAgIFwiZ2VuZXJpY1wiXG4ifQ== -->
+<pre><code>[1] &quot;S3&quot;      &quot;generic&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnR5cGUocHJpbnQpXG5gYGAifQ== -->
+<pre class="r"><code>ftype(print)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUzNcIiAgICAgIFwiZ2VuZXJpY1wiXG4ifQ== -->
+<pre><code>[1] &quot;S3&quot;      &quot;generic&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnR5cGUodC5kYXRhLmZyYW1lKVxuYGBgIn0= -->
+<pre class="r"><code>ftype(t.data.frame)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUzNcIiAgICAgXCJtZXRob2RcIlxuIn0= -->
+<pre><code>[1] &quot;S3&quot;     &quot;method&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="exercises" class="section level2">
+<h2>13.2.1 Exercises</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnR5cGUobWVhbilcblxuYGBgIn0= -->
+<pre class="r"><code>ftype(mean)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUzNcIiAgICAgIFwiZ2VuZXJpY1wiXG4ifQ== -->
+<pre><code>[1] &quot;S3&quot;      &quot;generic&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBlY2RmKHJwb2lzKDEwMCwgMTApKVxueFxuYGBgIn0= -->
+<pre class="r"><code>x &lt;- ecdf(rpois(100, 10))
+x</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRW1waXJpY2FsIENERiBcbkNhbGw6IGVjZGYocnBvaXMoMTAwLCAxMCkpXG4geFsxOjE2XSA9ICAgICAgNCwgICAgICA1LCAgICAgIDYsICAuLi4sICAgICAxOCwgICAgIDIwXG4ifQ== -->
+<pre><code>Empirical CDF 
+Call: ecdf(rpois(100, 10))
+ x[1:16] =      4,      5,      6,  ...,     18,     20</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2xvb3A6Om90eXBlKHgpXG5gYGAifQ== -->
+<pre class="r"><code>sloop::otype(x)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUzNcIlxuIn0= -->
+<pre><code>[1] &quot;S3&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXR0cmlidXRlcyh4KVxuYGBgIn0= -->
+<pre class="r"><code>attributes(x)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJGNsYXNzXG5bMV0gXCJlY2RmXCIgICAgIFwic3RlcGZ1blwiICBcImZ1bmN0aW9uXCJcblxuJGNhbGxcbmVjZGYocnBvaXMoMTAwLCAxMCkpXG4ifQ== -->
+<pre><code>$class
+[1] &quot;ecdf&quot;     &quot;stepfun&quot;  &quot;function&quot;
+
+$call
+ecdf(rpois(100, 10))</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHlwZW9mKHgpXG5gYGAifQ== -->
+<pre class="r"><code>typeof(x)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiY2xvc3VyZVwiXG4ifQ== -->
+<pre><code>[1] &quot;closure&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSB0YWJsZShycG9pcygxMDAsIDUpKVxueFxuYGBgIn0= -->
+<pre class="r"><code>x &lt;- table(rpois(100, 5))
+x</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG4gMSAgMiAgMyAgNCAgNSAgNiAgNyAgOCAgOSAxMCAxMSAxMiBcbiAxICA3IDEwIDEyIDE4IDE5IDExIDExICA1ICAzICAyICAxIFxuIn0= -->
+<pre><code>
+ 1  2  3  4  5  6  7  8  9 10 11 12 
+ 1  7 10 12 18 19 11 11  5  3  2  1 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHlwZW9mKHgpXG5gYGAifQ== -->
+<pre class="r"><code>typeof(x)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiaW50ZWdlclwiXG4ifQ== -->
+<pre><code>[1] &quot;integer&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXR0cmlidXRlcyh4KVxuYGBgIn0= -->
+<pre class="r"><code>attributes(x)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJGRpbVxuWzFdIDEyXG5cbiRkaW1uYW1lc1xuJGRpbW5hbWVzW1sxXV1cbiBbMV0gXCIxXCIgIFwiMlwiICBcIjNcIiAgXCI0XCIgIFwiNVwiICBcIjZcIiAgXCI3XCIgIFwiOFwiICBcIjlcIiAgXCIxMFwiIFwiMTFcIiBcIjEyXCJcblxuXG4kY2xhc3NcblsxXSBcInRhYmxlXCJcbiJ9 -->
+<pre><code>$dim
+[1] 12
+
+$dimnames
+$dimnames[[1]]
+ [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot;
+
+
+$class
+[1] &quot;table&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3R5cGUoeClcbmBgYCJ9 -->
+<pre class="r"><code>otype(x)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUzNcIlxuIn0= -->
+<pre><code>[1] &quot;S3&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="classes" class="section level1">
+<h1>13.3 Classes</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBzdHJ1Y3R1cmUobGlzdCgpLCBjbGFzcyA9IFwibXlfY2xhc3NcIilcblxuY2xhc3MoeClcbmBgYCJ9 -->
+<pre class="r"><code>x &lt;- structure(list(), class = &quot;my_class&quot;)
+
+class(x)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibXlfY2xhc3NcIlxuIn0= -->
+<pre><code>[1] &quot;my_class&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5oZXJpdHMoeCwgXCJteV9jbGFzc1wiKVxuYGBgIn0= -->
+<pre class="r"><code>inherits(x, &quot;my_class&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 -->
+<pre><code>[1] TRUE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3R5cGUoeClcbmBgYCJ9 -->
+<pre class="r"><code>otype(x)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUzNcIlxuIn0= -->
+<pre><code>[1] &quot;S3&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kIDwtIGxtKGxvZyhtcGcpIH4gbG9nKGRpc3ApLCBkYXRhID0gbXRjYXJzKVxuY2xhc3MobW9kKVxuYGBgIn0= -->
+<pre class="r"><code>mod &lt;- lm(log(mpg) ~ log(disp), data = mtcars)
+class(mod)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibG1cIlxuIn0= -->
+<pre><code>[1] &quot;lm&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHlwZW9mKG1vZClcbmBgYCJ9 -->
+<pre class="r"><code>typeof(mod)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibGlzdFwiXG4ifQ== -->
+<pre><code>[1] &quot;list&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQobW9kKVxuYGBgIn0= -->
+<pre class="r"><code>print(mod)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IGxvZyhtcGcpIH4gbG9nKGRpc3ApLCBkYXRhID0gbXRjYXJzKVxuXG5Db2VmZmljaWVudHM6XG4oSW50ZXJjZXB0KSAgICBsb2coZGlzcCkgIFxuICAgICA1LjM4MTAgICAgICAtMC40NTg2ICBcbiJ9 -->
+<pre><code>
+Call:
+lm(formula = log(mpg) ~ log(disp), data = mtcars)
+
+Coefficients:
+(Intercept)    log(disp)  
+     5.3810      -0.4586  </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3R5cGUobW9kKVxuYGBgIn0= -->
+<pre class="r"><code>otype(mod)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUzNcIlxuIn0= -->
+<pre><code>[1] &quot;S3&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXR0cmlidXRlcyhtb2QpXG5gYGAifQ== -->
+<pre class="r"><code>attributes(mod)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJG5hbWVzXG4gWzFdIFwiY29lZmZpY2llbnRzXCIgIFwicmVzaWR1YWxzXCIgICAgIFwiZWZmZWN0c1wiICAgICAgIFwicmFua1wiICAgICAgICAgIFwiZml0dGVkLnZhbHVlc1wiIFwiYXNzaWduXCIgICAgICAgIFwicXJcIiAgICAgICAgICAgXG4gWzhdIFwiZGYucmVzaWR1YWxcIiAgIFwieGxldmVsc1wiICAgICAgIFwiY2FsbFwiICAgICAgICAgIFwidGVybXNcIiAgICAgICAgIFwibW9kZWxcIiAgICAgICAgXG5cbiRjbGFzc1xuWzFdIFwibG1cIlxuIn0= -->
+<pre><code>$names
+ [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;          &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;           
+ [8] &quot;df.residual&quot;   &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;        
+
+$class
+[1] &quot;lm&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3MobW9kKSA8LSBcIkRhdGVcIlxub3R5cGUobW9kKVxuYGBgIn0= -->
+<pre class="r"><code>class(mod) &lt;- &quot;Date&quot;
+otype(mod)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUzNcIlxuIn0= -->
+<pre><code>[1] &quot;S3&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQobW9kKVxuYGBgIn0= -->
+<pre class="r"><code>print(mod)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gYXMuUE9TSVhsdC5EYXRlKHgpIDogXG4gIChsaXN0KSBvYmplY3QgY2Fubm90IGJlIGNvZXJjZWQgdG8gdHlwZSAnZG91YmxlJ1xuIn0= -->
+<pre><code>Error in as.POSIXlt.Date(x) : 
+  (list) object cannot be coerced to type 'double'</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="constructors" class="section level2">
+<h2>13.3.1 Constructors</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmV3X0RhdGUgPC0gZnVuY3Rpb24oeCA9IGRvdWJsZSgpKSB7XG4gIHN0b3BpZm5vdChpcy5kb3VibGUoeCkpXG4gIHN0cnVjdHVyZSh4LCBjbGFzcyA9IFwiRGF0ZVwiKVxufVxuXG5uZXdfRGF0ZShjKC0xLCAwLCAxKSlcbmBgYCJ9 -->
+<pre class="r"><code>new_Date &lt;- function(x = double()) {
+  stopifnot(is.double(x))
+  structure(x, class = &quot;Date&quot;)
+}
+
+new_Date(c(-1, 0, 1))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMTk2OS0xMi0zMVwiIFwiMTk3MC0wMS0wMVwiIFwiMTk3MC0wMS0wMlwiXG4ifQ== -->
+<pre><code>[1] &quot;1969-12-31&quot; &quot;1970-01-01&quot; &quot;1970-01-02&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBuZXdfRGF0ZShjKC0xLCAwLCAxKSlcbmBgYCJ9 -->
+<pre class="r"><code>x &lt;- new_Date(c(-1, 0, 1))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="validators" class="section level2">
+<h2>13.3.2 Validators</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmV3X2ZhY3RvciA8LSBmdW5jdGlvbih4ID0gaW50ZWdlcigpLCBsZXZlbHMgPSBjaGFyYWN0ZXIoKSkge1xuICBzdG9waWZub3QoaXMuaW50ZWdlcih4KSlcbiAgc3RvcGlmbm90KGlzLmNoYXJhY3RlcihsZXZlbHMpKVxuICBcbiAgc3RydWN0dXJlKFxuICAgIHgsIFxuICAgIGxldmVscyA9IGxldmVscywgXG4gICAgY2xhc3MgPSBcImZhY3RvclwiXG4gIClcbn1cblxubmV3X2ZhY3RvcigxOjUsIFwiYVwiKVxuYGBgIn0= -->
+<pre class="r"><code>new_factor &lt;- function(x = integer(), levels = character()) {
+  stopifnot(is.integer(x))
+  stopifnot(is.character(levels))
+  
+  structure(
+    x, 
+    levels = levels, 
+    class = &quot;factor&quot;
+  )
+}
+
+new_factor(1:5, &quot;a&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gYXMuY2hhcmFjdGVyLmZhY3Rvcih4KSA6IG1hbGZvcm1lZCBmYWN0b3JcbiJ9 -->
+<pre><code>Error in as.character.factor(x) : malformed factor</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFsaWRhdGVfZmFjdG9yKG5ld19mYWN0b3IoMTo1LCByZXAoXCJhXCIsIHRpbWVzID0gNSkpKVxuXG5gYGAifQ== -->
+<pre class="r"><code>validate_factor(new_factor(1:5, rep(&quot;a&quot;, times = 5)))
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIGEgYSBhIGEgYVxuTGV2ZWxzOiBhIGEgYSBhIGFcbiJ9 -->
+<pre><code>[1] a a a a a
+Levels: a a a a a</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiZHVwbGljYXRlZCBsZXZlbCBbMl0gaW4gZmFjdG9yXG4ifQ== -->
+<pre><code>duplicated level [2] in factor</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="helpers" class="section level2">
+<h2>13.3.3 Helpers</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-</div>
-<div id="attributes" class="section level2">
-<h2>3.3 Attributes</h2>
+<div id="exercises-1" class="section level2">
+<h2>13.3.4 Exercises</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYSA8LSAxOjRcbmF0dHIoYSwgXFx4XFwpIDwtIFxcYWJjZGVmXFxcbmF0dHIoYSwgXFx4XFwpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r a &lt;- 1:4 attr(a, ) &lt;- <br />
-attr(a, )</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnR5cGUoZGF0YS5mcmFtZSlcblxuYGBgIn0= -->
+<pre class="r"><code>ftype(data.frame)
+</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFxcYWJjZGVmXFxcbiJ9 -->
-<pre><code>[1] \abcdef\</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYXR0cihhLCBcXHlcXCkgPC0gNDo2XG5zdHIoYXR0cmlidXRlcyhhKSlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r attr(a, ) &lt;- 4:6 str(attributes(a))</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAyXG4gJCB4OiBjaHIgXFxhYmNkZWZcXFxuICQgeTogaW50IFsxOjNdIDQgNSA2XG4ifQ== -->
-<pre><code>List of 2
- $ x: chr \abcdef\
- $ y: int [1:3] 4 5 6</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYSA8LSBzdHJ1Y3R1cmUoXG4gIDE6NCxcbiAgeCA9IFxcYWJjZGVmXFwsXG4gIHkgPSA0OjZcbilcbnN0cihhdHRyaWJ1dGVzKGEpKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r a &lt;- structure( 1:4, x = , y = 4:6 ) str(attributes(a))</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAyXG4gJCB4OiBjaHIgXFxhYmNkZWZcXFxuICQgeTogaW50IFsxOjNdIDQgNSA2XG4ifQ== -->
-<pre><code>List of 2
- $ x: chr \abcdef\
- $ y: int [1:3] 4 5 6</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiZnVuY3Rpb25cIlxuIn0= -->
+<pre><code>[1] &quot;function&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<div id="exercises-1" class="section level3">
-<h3>3.3.4 Exercises</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2V0TmFtZXNcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r setNames</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmFjdG9yXG5cbmBgYCJ9 -->
+<pre class="r"><code>factor
+</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiZnVuY3Rpb24gKG9iamVjdCA9IG5tLCBubSkgXG57XG4gICAgbmFtZXMob2JqZWN0KSA8LSBubVxuICAgIG9iamVjdFxufVxuPGJ5dGVjb2RlOiAweDdmZTBlZTQxZDE3OD5cbjxlbnZpcm9ubWVudDogbmFtZXNwYWNlOnN0YXRzPlxuIn0= -->
-<pre><code>function (object = nm, nm) 
+<!-- rnb-output-begin eyJkYXRhIjoiZnVuY3Rpb24gKHggPSBjaGFyYWN0ZXIoKSwgbGV2ZWxzLCBsYWJlbHMgPSBsZXZlbHMsIGV4Y2x1ZGUgPSBOQSwgXG4gICAgb3JkZXJlZCA9IGlzLm9yZGVyZWQoeCksIG5tYXggPSBOQSkgXG57XG4gICAgaWYgKGlzLm51bGwoeCkpIFxuICAgICAgICB4IDwtIGNoYXJhY3RlcigpXG4gICAgbnggPC0gbmFtZXMoeClcbiAgICBpZiAobWlzc2luZyhsZXZlbHMpKSB7XG4gICAgICAgIHkgPC0gdW5pcXVlKHgsIG5tYXggPSBubWF4KVxuICAgICAgICBpbmQgPC0gb3JkZXIoeSlcbiAgICAgICAgbGV2ZWxzIDwtIHVuaXF1ZShhcy5jaGFyYWN0ZXIoeSlbaW5kXSlcbiAgICB9XG4gICAgZm9yY2Uob3JkZXJlZClcbiAgICBpZiAoIWlzLmNoYXJhY3Rlcih4KSkgXG4gICAgICAgIHggPC0gYXMuY2hhcmFjdGVyKHgpXG4gICAgbGV2ZWxzIDwtIGxldmVsc1tpcy5uYShtYXRjaChsZXZlbHMsIGV4Y2x1ZGUpKV1cbiAgICBmIDwtIG1hdGNoKHgsIGxldmVscylcbiAgICBpZiAoIWlzLm51bGwobngpKSBcbiAgICAgICAgbmFtZXMoZikgPC0gbnhcbiAgICBpZiAobWlzc2luZyhsYWJlbHMpKSB7XG4gICAgICAgIGxldmVscyhmKSA8LSBhcy5jaGFyYWN0ZXIobGV2ZWxzKVxuICAgIH1cbiAgICBlbHNlIHtcbiAgICAgICAgbmxhYiA8LSBsZW5ndGgobGFiZWxzKVxuICAgICAgICBpZiAobmxhYiA9PSBsZW5ndGgobGV2ZWxzKSkge1xuICAgICAgICAgICAgbmxldnMgPC0gdW5pcXVlKHhsZXZzIDwtIGFzLmNoYXJhY3RlcihsYWJlbHMpKVxuICAgICAgICAgICAgYXQgPC0gYXR0cmlidXRlcyhmKVxuICAgICAgICAgICAgYXQkbGV2ZWxzIDwtIG5sZXZzXG4gICAgICAgICAgICBmIDwtIG1hdGNoKHhsZXZzLCBubGV2cylbZl1cbiAgICAgICAgICAgIGF0dHJpYnV0ZXMoZikgPC0gYXRcbiAgICAgICAgfVxuICAgICAgICBlbHNlIGlmIChubGFiID09IDFMKSBcbiAgICAgICAgICAgIGxldmVscyhmKSA8LSBwYXN0ZTAobGFiZWxzLCBzZXFfYWxvbmcobGV2ZWxzKSlcbiAgICAgICAgZWxzZSBzdG9wKGdldHRleHRmKFwiaW52YWxpZCAnbGFiZWxzJzsgbGVuZ3RoICVkIHNob3VsZCBiZSAxIG9yICVkXCIsIFxuICAgICAgICAgICAgbmxhYiwgbGVuZ3RoKGxldmVscykpLCBkb21haW4gPSBOQSlcbiAgICB9XG4gICAgY2xhc3MoZikgPC0gYyhpZiAob3JkZXJlZCkgXCJvcmRlcmVkXCIsIFwiZmFjdG9yXCIpXG4gICAgZlxufVxuPGJ5dGVjb2RlOiAweDdmZDQxODA5MTNjOD5cbjxlbnZpcm9ubWVudDogbmFtZXNwYWNlOmJhc2U+XG4ifQ== -->
+<pre><code>function (x = character(), levels, labels = levels, exclude = NA, 
+    ordered = is.ordered(x), nmax = NA) 
 {
-    names(object) &lt;- nm
-    object
+    if (is.null(x)) 
+        x &lt;- character()
+    nx &lt;- names(x)
+    if (missing(levels)) {
+        y &lt;- unique(x, nmax = nmax)
+        ind &lt;- order(y)
+        levels &lt;- unique(as.character(y)[ind])
+    }
+    force(ordered)
+    if (!is.character(x)) 
+        x &lt;- as.character(x)
+    levels &lt;- levels[is.na(match(levels, exclude))]
+    f &lt;- match(x, levels)
+    if (!is.null(nx)) 
+        names(f) &lt;- nx
+    if (missing(labels)) {
+        levels(f) &lt;- as.character(levels)
+    }
+    else {
+        nlab &lt;- length(labels)
+        if (nlab == length(levels)) {
+            nlevs &lt;- unique(xlevs &lt;- as.character(labels))
+            at &lt;- attributes(f)
+            at$levels &lt;- nlevs
+            f &lt;- match(xlevs, nlevs)[f]
+            attributes(f) &lt;- at
+        }
+        else if (nlab == 1L) 
+            levels(f) &lt;- paste0(labels, seq_along(levels))
+        else stop(gettextf(&quot;invalid 'labels'; length %d should be 1 or %d&quot;, 
+            nlab, length(levels)), domain = NA)
+    }
+    class(f) &lt;- c(if (ordered) &quot;ordered&quot;, &quot;factor&quot;)
+    f
 }
-&lt;bytecode: 0x7fe0ee41d178&gt;
-&lt;environment: namespace:stats&gt;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudW5uYW1lXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r unname</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiZnVuY3Rpb24gKG9iaiwgZm9yY2UgPSBGQUxTRSkgXG57XG4gICAgaWYgKCFpcy5udWxsKG5hbWVzKG9iaikpKSBcbiAgICAgICAgbmFtZXMob2JqKSA8LSBOVUxMXG4gICAgaWYgKCFpcy5udWxsKGRpbW5hbWVzKG9iaikpICYmIChmb3JjZSB8fCAhaXMuZGF0YS5mcmFtZShvYmopKSkgXG4gICAgICAgIGRpbW5hbWVzKG9iaikgPC0gTlVMTFxuICAgIG9ialxufVxuPGJ5dGVjb2RlOiAweDdmZTBlZGRhN2VjMD5cbjxlbnZpcm9ubWVudDogbmFtZXNwYWNlOmJhc2U+XG4ifQ== -->
-<pre><code>function (obj, force = FALSE) 
-{
-    if (!is.null(names(obj))) 
-        names(obj) &lt;- NULL
-    if (!is.null(dimnames(obj)) &amp;&amp; (force || !is.data.frame(obj))) 
-        dimnames(obj) &lt;- NULL
-    obj
-}
-&lt;bytecode: 0x7fe0edda7ec0&gt;
+&lt;bytecode: 0x7fd4180913c8&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxueCA8LSAxOjEwXG4jIHJldHVybiBOVUxMXG5ucm93KHgpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r x &lt;- 1:10 # return NULL nrow(x)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
-<pre><code>NULL</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIz4gTlVMTFxubmNvbCh4KVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r #&gt; NULL ncol(x)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
-<pre><code>NULL</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIz4gTlVMTFxuXG4jIFByZXRlbmQgaXQncyBhIGNvbHVtbi12ZWN0b3Jcbk5ST1coeClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r #&gt; NULL</p>
-</div>
-</div>
-</div>
-<div id="pretend-its-a-column-vector" class="section level1">
-<h1>Pretend it’s a column-vector</h1>
-<p>NROW(x)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEwXG4ifQ== -->
-<pre><code>[1] 10</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIz4gWzFdIDEwXG5OQ09MKHgpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r #&gt; [1] 10 NCOL(x)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDFcbiJ9 -->
-<pre><code>[1] 1</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIz4gWzFdIDFcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r #&gt; [1] 1</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxueDEgPC0gYXJyYXkoMTo1LCBjKDEsIDEsIDUpKSAgIyAxIHJvdywgIDEgY29sdW1uLCAgNSBpbiB0aGlyZCBkaW1lbnNpb25cbngyIDwtIGFycmF5KDE6NSwgYygxLCA1LCAxKSkgICMgMSByb3csICA1IGNvbHVtbnMsIDEgaW4gdGhpcmQgZGltZW5zaW9uXG54MyA8LSBhcnJheSgxOjUsIGMoNSwgMSwgMSkpICAjIDUgcm93cywgMSBjb2x1bW4sICAxIGluIHRoaXJkIGRpbWVuc2lvblxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r x1 &lt;- array(1:5, c(1, 1, 5)) # 1 row, 1 column, 5 in third dimension x2 &lt;- array(1:5, c(1, 5, 1)) # 1 row, 5 columns, 1 in third dimension x3 &lt;- array(1:5, c(5, 1, 1)) # 5 rows, 1 column, 1 in third dimension</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc3RydWN0dXJlKDE6NSwgY29tbWVudCA9IFxcbXkgYXR0cmlidXRlXFwpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r structure(1:5, comment = attribute)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMiAzIDQgNVxuIn0= -->
-<pre><code>[1] 1 2 3 4 5</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIz4gWzFdIDEgMiAzIDQgNVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r #&gt; [1] 1 2 3 4 5</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Contrary to other attributes, the comment is not printed (by print or print.default).</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZm9vIDwtIHN0cnVjdHVyZSgxOjUsIGNvbW1lbnQgPSBcXG15IGF0dHJpYnV0ZVxcKVxuXG5hdHRyaWJ1dGVzKGZvbylcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r foo &lt;- structure(1:5, comment = attribute)</p>
-<p>attributes(foo)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiJGNvbW1lbnRcblsxXSBcXG15IGF0dHJpYnV0ZVxcXG4ifQ== -->
-<pre><code>$comment
-[1] \my attribute\</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIz4gJGNvbW1lbnRcbiM+IFsxXSBcXG15IGF0dHJpYnV0ZVxcXG5hdHRyKGZvbywgd2hpY2ggPSBcXGNvbW1lbnRcXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r #&gt; $comment #&gt; [1] attribute<br />
-attr(foo, which = )</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFxcbXkgYXR0cmlidXRlXFxcbiJ9 -->
-<pre><code>[1] \my attribute\</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIz4gWzFdIFxcbXkgYXR0cmlidXRlXFxcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r #&gt; [1] attribute<br />
-</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="factors" class="section level3">
-<h3>3.4.1 FActors</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXR0cmlidXRlcyh4KVxuXG5gYGAifQ== -->
-<pre class="r"><code>attributes(x)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0ZGlmZihjKFwiYVwiLCBcImFcIiwgXCJiXCIsIFwiY1wiKSwgYyhcImFcIiwgXCJhXCIsIFwiYlwiKSlcblxuYGBgIn0= -->
+<pre class="r"><code>setdiff(c(&quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;), c(&quot;a&quot;, &quot;a&quot;, &quot;b&quot;))
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiJGxldmVsc1xuWzFdIFwiYVwiIFwiYlwiXG5cbiRjbGFzc1xuWzFdIFwiZmFjdG9yXCJcbiJ9 -->
-<pre><code>$levels
-[1] &quot;a&quot; &quot;b&quot;
-
-$class
-[1] &quot;factor&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiY1wiXG4ifQ== -->
+<pre><code>[1] &quot;c&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JhZGUgPC0gb3JkZXJlZChjKFwiYlwiLCBcImJcIiwgXCJhXCIsIFwiY1wiKSwgbGV2ZWxzID0gYyhcImNcIiwgXCJiXCIsIFwiYVwiKSlcbmdyYWRlXG5gYGAifQ== -->
-<pre class="r"><code>grade &lt;- ordered(c(&quot;b&quot;, &quot;b&quot;, &quot;a&quot;, &quot;c&quot;), levels = c(&quot;c&quot;, &quot;b&quot;, &quot;a&quot;))
-grade</code></pre>
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudW5jbGFzcyh4KVxuXG5gYGAifQ== -->
+<pre class="r"><code>unclass(x)
+</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIGIgYiBhIGNcbkxldmVsczogYyA8IGIgPCBhXG4ifQ== -->
-<pre><code>[1] b b a c
-Levels: c &lt; b &lt; a</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgMSAgMiAgMyAgNCAgNSAgNiAgNyAgOCAgOSAxMFxuIn0= -->
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmV3X3JvbWFuIDwtIGZ1bmN0aW9uKHggPSBpbnRlZ2VyKCkpIHtcbiAgc3RvcGlmbm90KGlzLmludGVnZXIoeCkpXG4gIHN0cnVjdHVyZShcbiAgICB4LFxuICAgIGNsYXNzID0gXCJyb21hblwiXG4gIClcbn1cblxubmV3X3JvbWFuKDE6MTApXG5gYGAifQ== -->
+<pre class="r"><code>new_roman &lt;- function(x = integer()) {
+  stopifnot(is.integer(x))
+  structure(
+    x,
+    class = &quot;roman&quot;
+  )
+}
+
+new_roman(1:10)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBJICAgIElJICAgSUlJICBJViAgIFYgICAgVkkgICBWSUkgIFZJSUkgSVggICBYICAgXG4ifQ== -->
+<pre><code> [1] I    II   III  IV   V    VI   VII  VIII IX   X   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW50ZWdlcigxLjMpXG5cbmBgYCJ9 -->
+<pre class="r"><code>integer(1.3)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDBcbiJ9 -->
+<pre><code>[1] 0</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm9tYW4oMS4zKVxuXG5gYGAifQ== -->
+<pre class="r"><code>roman(1.3)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIElcbiJ9 -->
+<pre><code>[1] I</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="exercises-2" class="section level3">
-<h3>3.4.5 Exercises</h3>
+</div>
+<div id="generics-and-methods" class="section level1">
+<h1>13.4 Generics and methods</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBzYW1wbGUoMToxMCwgMWU0LCByZXBsYWNlID0gVFJVRSlcbnkgPC0gdGFibGUoeClcbnlcbmBgYCJ9 -->
-<pre class="r"><code>x &lt;- sample(1:10, 1e4, replace = TRUE)
-y &lt;- table(x)
-y</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBTeXMuRGF0ZSgpXG5zM19kaXNwYXRjaChwcmludCh4KSlcbmBgYCJ9 -->
+<pre class="r"><code>x &lt;- Sys.Date()
+s3_dispatch(print(x))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoieFxuICAgMSAgICAyICAgIDMgICAgNCAgICA1ICAgIDYgICAgNyAgICA4ICAgIDkgICAxMCBcbiA5OTggIDk1MCAgOTY2IDEwMTMgMTA2NyAxMDEyIDEwMDggIDk5NyAgOTcyIDEwMTcgXG4ifQ== -->
-<pre><code>x
-   1    2    3    4    5    6    7    8    9   10 
- 998  950  966 1013 1067 1012 1008  997  972 1017 </code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiPT4gcHJpbnQuRGF0ZVxuICogcHJpbnQuZGVmYXVsdFxuIn0= -->
+<pre><code>=&gt; print.Date
+ * print.default</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHlwZW9mKHkpXG5gYGAifQ== -->
-<pre class="r"><code>typeof(y)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnR5cGUocHJpbnQpXG5gYGAifQ== -->
+<pre class="r"><code>ftype(print)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiaW50ZWdlclwiXG4ifQ== -->
-<pre><code>[1] &quot;integer&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUzNcIiAgICAgIFwiZ2VuZXJpY1wiXG4ifQ== -->
+<pre><code>[1] &quot;S3&quot;      &quot;generic&quot;</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXR0cmlidXRlcyh5KVxuYGBgIn0= -->
-<pre class="r"><code>attributes(y)</code></pre>
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuczNfbWV0aG9kc19nZW5lcmljKFwibWVhblwiKVxuYGBgIn0= -->
+<pre class="r"><code>s3_methods_generic(&quot;mean&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiJGRpbVxuWzFdIDEwXG5cbiRkaW1uYW1lc1xuJGRpbW5hbWVzJHhcbiBbMV0gXCIxXCIgIFwiMlwiICBcIjNcIiAgXCI0XCIgIFwiNVwiICBcIjZcIiAgXCI3XCIgIFwiOFwiICBcIjlcIiAgXCIxMFwiXG5cblxuJGNsYXNzXG5bMV0gXCJ0YWJsZVwiXG4ifQ== -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6NCwibnJvdyI6N30sInJkZiI6Ikg0c0lBQUFBQUFBQUE2MVN6VTdDUUJCZVNrdWxDWWFFRi9BRjZFRXVQQUF4OGFRUlRiaVpaVHVGamUwdTdtN1JvNi90aFRxbE8wUnE0c0hZWktiZi9NK1gyWWZGYXBhc0VzWlluL1VIcUNPRUxIcDZ2Sm5PR1FzRE5Ib3NaTVBtLzQ3aENZSVFaWXdTKzBCWUFsZi9oanU5Rjl5QngzRUdPYThLNTgyTFRPYTVrK1VwZkgrM3ZGMEpkMmFlc3VQWFN0dktVSEt5Rjg3WTUwWTMxbkZpUS9XbjBIZTIxWnBiK0NPZUdOaEk2OEJBZHJXY2xlQzJPdnN0ZEg2RVNQRVNyRjhuSkc0YlVHQ2tvQnhSY0dzcHRwZFdyZ3VhUHJDNk1nSTZYWWRHdjZYVWVZUVNmS0NxNi9xek83NXQzWTRuWjVKeHg5UGNZRDFhaDA1SnJIZE9hb1ZGUWZONG9rNXh6M1FjNDBvMW0yUlRzYTNVeS9SNjd1OUR0eGg1SEgvRFlUc3pxSDJ2aU5pQzJraEYzS09DcjZId3hpVlNQakpPZDBZcWVpVUplbTNxdE9PVWx3aGRrT2RJamgyK0FIcGVEemcwQXdBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["generic"],"name":[1],"type":["chr"],"align":["left"]},{"label":["class"],"name":[2],"type":["chr"],"align":["left"]},{"label":["visible"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["source"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"mean","2":"Date","3":"TRUE","4":"base"},{"1":"mean","2":"default","3":"TRUE","4":"base"},{"1":"mean","2":"difftime","3":"TRUE","4":"base"},{"1":"mean","2":"POSIXct","3":"TRUE","4":"base"},{"1":"mean","2":"POSIXlt","3":"TRUE","4":"base"},{"1":"mean","2":"quosure","3":"FALSE","4":"registered S3method"},{"1":"mean","2":"vctrs_vctr","3":"FALSE","4":"registered S3method"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[7]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuczNfbWV0aG9kc19nZW5lcmljKFwicHJpbnRcIilcbmBgYCJ9 -->
+<pre class="r"><code>s3_methods_generic(&quot;print&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6NCwibnJvdyI6MjQ5fSwicmRmIjoiSDRzSUFBQUFBQUFBQSsxYjNXOGJ1UkZYYk1tUzVTOGxxVk1jV2hSRlcvU2xpRkUwTC9mcWk2dWVBVGROSmJmTjI0TEw1VW84Y2NrTnliVXRQL1hmdnBkTGg5cmxMRmVScjNGU29NNWxCZGplK2Mxd1NBN25hMWZyeWRtYkY4TTN3MDZuczkzWjNvSGZQYmpzOVA1eE9YNytkYWZUM1FMaVVhZmIyWFYvYjREOUZDNjY4RE9Dbis4clJpL1hYTnFXYUltV2FJbVdhSW1XYUltV2FJbVdhSW4vTzlHOFdka21OUFdYcDMrZWVsRWkxUldwaUQwaURZK01oZEd6Q2hwVzBGSXcxS091cXNzK1hBcHUvTFJiUkh1dHA1cG5YdXNPY2NRZks2cDdhczROY2t6T2hLaW9aeVVWY1FsL3FZMm9rcGJkZU9XRG1NZE1XcjMwWTcvaE1iQzkxbGpkK091aldLdHJ3LzdKWjVKWnkveGtXN0VmMm91WE5ieFA1MFRPV0RMbUFyRmYwRG1qQzFoQXdxTENrQm1ETlVVNW9RdTRyRVNlZXBFc2g0SEpTclppalVwV3dqSUY0eEpjNDc3SDg0VDVremp3bUNWYytPbVBHMkJVTHRDc2FWRThTdUlLZSt3eGV3NG0wNUo0a3g2VmpJd3NXSFJGdE5meHBJU2xrcWV2enlOS0JFNzkrNUpUN2JXMEFERUdUQmxaRmMyRWlvbGcwcC8vVjV1a3JTVjAvaVBxRW1JSjJHV0R1dDl0a0RhV2FGdmtVVnBJYXJtUzVrZW1Oa3RwaWJmMmJ6Y0lGRklva3J5bjYxZnJvaGxjMnRWQ0RiTnJUdUdsWGs1T1g4RTJRTGdPbG1kTmtUVUZ4MnRjbGpPWjNMR2ZoQm1xZWU1V1dRbjg1azZCaU1FcWtub1ZhL01JVHBrMGJDUFRPTWRPdUc0Nk5USUx3NUtLZFZpeFZKUUdnVks1YjY3SkxDT202WTJUcEl4Z2lRYjRHVElFbHl5NjVvbWR2ejhvQTdkM2xtdE9ESXdiemRJMUQ1NncyWFNaTlR6NGVjbVp2bkNLNWlveGtXVE1XUWRNSnNnU1FsV3pHZVFzVFFMalZpRnJGUGhRRml1eHRyL0xpTWdrR2pjanNOQ2lqc0JxYTFkVnptbkVmYW5rVE5IeGU1WURjQnFrMXY0S0hJOGI1Q1JwTEhMQ2NrRW9HeGZvdnFXRnBpK3EvZnA4dVVJdjViZ2h0WjRVQjVUYjBCQkRLaURiYzZ0WjdtdkNDc201bEF5ek83aWJvbWdOUjd3VWtDVlE2KzRLT3dzUFVRbWxYeXA1eGJSRlBjTXEwbDZmamV1Qk11R045U2lZbUFiSUgxYUI1NTFiTTlCb2ZEQkJJSEJ3VzNkWVY1eGRZNW1obWl4cmxjNjVUbEpOTXRaQUxJbnhJTHF3ZGp3VXlOYWtFQmFGWVNLdFpqQytGb0FhYVgxMUdTUThUUzFIN2Qya3JwQzlzNkJjOXM4dUxzNWxxcnloSy9LaWxqZ0dhTEx5VnFaWk1sR0ZoYmp4dXhxQmlZc013bXV0VUQ1R1BGY210T1VoTXJRcktENlNFRFZNTkN3OVRJb3NXNEoyckZaSE5SSUZHK2t5bW5pUkh1TXo1alVNVWpoZFVwZWpIVWNyWFZNWkY5NXMreTZ2VENYSnpWemhWbEtJb3d2WTg2c2ltekJUSDBJL1ZUb3JoSGV2WG5pYTNkU3d0emhGZUtvRG4vaTl4V2ZNbnNybDlSeXM2NXVibWZESDJwMkpBajFrcGxXUlErN0FmZTdNcVNqcWc1b3prWmVaRWRLYW5VT3h6TG1Qa1A2YzNXUjFlN0QzclJMMlg5d1Zhb01TaGhHTlZYTllrWFY2NmMwaFpOSGNjNXRoZ1hmWHRmY3ZVUVBBa0Y5aGczNFFsNmtmdE9zbUJ3ZEdGOS9oUmtGVzlLTGZHVFRSemlKakJEUE43a0p5Qy8wQVJ4OWNBZERkUVNqbXBNN21ldzdYMFNJd2Z1K0MxTzBhRUpmc2pWK3M0TEVtZW5uKzkwbUYvRkx3bE5FbEZWQWtpSlpsOHM0MW82RENaOE1kNTRES0g4Y1dIdHZBbFhnWTRaZlNFNG9aekFSQ3pTNzRBaW5qbWwyL3VZd2x1UUt0L2hqMnk0UWFoUzUwOU5jeXlZNmJuclNUaFVLUFgwRkt2V0pWdkFieDNKZVFsT3BUM1paWWFQcFN2UzBVSHNpUmhKRFVuRVl1dXdVT3ErTHZYR2RzK0MxbUowVnQ0RnhQcXNSNDlsNy9zRmR4Z293ejlCQWEvcUJDcGxBVUNxd1JPU0NCNngvbWhPdHJidGhKNkpVN09TeTFOZ2gweFFKdkIwWWxGYmtxSUNYQjFSNVZ1SUtXMWFVZ2IvZ0tObk9TZXV3cmo3MHRHTHRkTmR5YmRia0t3eW1tblA3cnYwM1AzMURiSURHUDdPWHFtdW5HUHJiekhCTlVybDJGUWpQb1Zidm42ZDFjS3hvRmlmNVpYbWl0c2J0YzlaSEszTVhOb2EvbHVNd25KZGZGWkJUREdhZzBSZHZWbkZVSDQzY0MvbUlLVEZ5RGlrUlAxOFRVbFhZMG9YbnVlbW5vVWFEem9YN1VGallYK3hCZFNpY1FBZ0xUYngvVXVmYmJ1L1hrTDk5c3JPT0hXa0JCaWVBV0RHNUJKTjRHMWFqSlhSUHF0MXJpcTlzQU1LRlVCUmFja2dNM0JKaEhLa1JyckJvL0w2SFUzZEpzMEhGY3NnWEo0b1JFNndtL1pJWVcyQzJoVytLUGRWdlhLVXVyak5TTFU5Zk82ZXM0Nk9vQ1JYY011Qno2K3g2MFFpNXNnMWpiTlhNdWw5QmsrQ3g3aU1CSlVFcjNETTl5d1VMb3dHUksyZm1KTTZLczUxTjBnY205YnpSMXhRZVptbW9zMm4zd2d6eEZBMjBiNjUxdU1MVzZvUGJTUHd2WU4wVU1Od09SaXdhODZ6RlE4dUVHL3JhNjQ2a2E1VEEvN0pVaXk1UDZ3Y0JSQUFWYjJmZHcwRERnNkxyeURqMkV5QUVpUVRJLzlHRFdlSWJoMFRxNUhudG9VM1pEK1RydVVYRWova2MxMnNnRHVMYXdCS0J3VmIvVzEzelc2Q2w3NGREaGlvQXVGcTI1YldQc29PQ3k5c0NCb3dTNXhaemdhUE5Xb0ZxbU16OXpGM3A2ZEhvNGQwbWpqT0NUR3p6dmdUVUxwaVZESDdrc0ZtejU3ZlFNaHpvNjhNUzlGVkQ2cUorM2tQWDl3ZkNLV2cxMWxncHYzc2NsVXF3ZTgvQ1VZMG12Uk4xdlA3dS9vZkwwbWptUGJzQ3hJVGRlTng5YWpWYXdnNkJZQnY0M3VKazVaZGdxNzk3SUp0QzdBZU1idDVTT2UzRDI0WjlISDhuN0tYd2VkWnA3ZlBTQitEci9MdDNoMy84bWQxL2VmVDRmdXBaTjg0Wjd2YStlVFRydW11YythL3BVMmJ2Mjk2bWYrL2pIZmZWdStvdzY5VVB5cHhwdnQzL3RuNmg4dWF4dVRMQi9mU0JMK3Ntc3RtVzFySmJWc2xyV3ZSTDdweWY1RDlUd29DYjkzeTdtZ2JBK3dpWVBaT1ZmUW4veWVhMjJaYlZCOTZDYy95TXlkbnMwbjBzTDBXYlUxakt0WlI1K1JtMVpueGZyaTdyOWFWbWZZdzVzL21kd3o3MjM0cjR2SExsMVZtQi94cVI3ZWNmTFVQZHVwT2RkY2NQajRKdDZWV2pLMXJUdWFuVjk0alVmd00vV3YrSFh1M2Z2K3V2VGw2ckw2VDBZdnQvWTZmeXdOcVN2OHZMVjU4NlcrNC9tM3RyZ1Izb05HQlhTclNSNVR1ZUZYRHovMDllZDhzdFIvMlhLUVhYOWZYRGRMZWZjZWxmcDZ2bmRNam1ydnpqdUNSTGoxOHlIc09YVmprL0MvMk53NzF5WUU2c3N2aWN6cEVwNFpMVzV6Zy8vQVZRV3JuVEpQUUFBIn0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["generic"],"name":[1],"type":["chr"],"align":["left"]},{"label":["class"],"name":[2],"type":["chr"],"align":["left"]},{"label":["visible"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["source"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"print","2":"acf","3":"FALSE","4":"registered S3method"},{"1":"print","2":"AES","3":"FALSE","4":"registered S3method"},{"1":"print","2":"anova","3":"FALSE","4":"registered S3method"},{"1":"print","2":"ansi_string","3":"FALSE","4":"registered S3method"},{"1":"print","2":"ansi_style","3":"FALSE","4":"registered S3method"},{"1":"print","2":"aov","3":"FALSE","4":"registered S3method"},{"1":"print","2":"aovlist","3":"FALSE","4":"registered S3method"},{"1":"print","2":"ar","3":"FALSE","4":"registered S3method"},{"1":"print","2":"Arima","3":"FALSE","4":"registered S3method"},{"1":"print","2":"arima0","3":"FALSE","4":"registered S3method"},{"1":"print","2":"AsIs","3":"TRUE","4":"base"},{"1":"print","2":"aspell","3":"FALSE","4":"registered S3method"},{"1":"print","2":"aspell_inspect_context","3":"FALSE","4":"registered S3method"},{"1":"print","2":"bibentry","3":"FALSE","4":"registered S3method"},{"1":"print","2":"Bibtex","3":"FALSE","4":"registered S3method"},{"1":"print","2":"boxx","3":"FALSE","4":"registered S3method"},{"1":"print","2":"browseVignettes","3":"FALSE","4":"registered S3method"},{"1":"print","2":"by","3":"TRUE","4":"base"},{"1":"print","2":"bytes","3":"FALSE","4":"registered S3method"},{"1":"print","2":"changedFiles","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_code_usage_in_package","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_compiled_code","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_demo_index","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_depdef","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_details","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_details_changes","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_doi_db","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_dotInternal","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_make_vars","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_nonAPI_calls","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_package_code_assign_to_globalenv","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_package_code_attach","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_package_code_data_into_globalenv","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_package_code_startup_functions","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_package_code_syntax","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_package_code_unload_functions","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_package_compact_datasets","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_package_CRAN_incoming","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_package_datasets","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_package_depends","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_package_description","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_package_description_encoding","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_package_license","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_packages_in_dir","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_packages_used","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_po_files","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_pragmas","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_Rd_contents","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_Rd_line_widths","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_Rd_metadata","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_Rd_xrefs","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_RegSym_calls","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_S3_methods_needing_delayed_registration","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_so_symbols","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_T_and_F","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_url_db","3":"FALSE","4":"registered S3method"},{"1":"print","2":"check_vignette_index","3":"FALSE","4":"registered S3method"},{"1":"print","2":"checkDocFiles","3":"FALSE","4":"registered S3method"},{"1":"print","2":"checkDocStyle","3":"FALSE","4":"registered S3method"},{"1":"print","2":"checkFF","3":"FALSE","4":"registered S3method"},{"1":"print","2":"checkRd","3":"FALSE","4":"registered S3method"},{"1":"print","2":"checkReplaceFuns","3":"FALSE","4":"registered S3method"},{"1":"print","2":"checkS3methods","3":"FALSE","4":"registered S3method"},{"1":"print","2":"checkTnF","3":"FALSE","4":"registered S3method"},{"1":"print","2":"checkVignettes","3":"FALSE","4":"registered S3method"},{"1":"print","2":"citation","3":"FALSE","4":"registered S3method"},{"1":"print","2":"cli_sitrep","3":"FALSE","4":"registered S3method"},{"1":"print","2":"cli_spinner","3":"FALSE","4":"registered S3method"},{"1":"print","2":"codoc","3":"FALSE","4":"registered S3method"},{"1":"print","2":"codocClasses","3":"FALSE","4":"registered S3method"},{"1":"print","2":"codocData","3":"FALSE","4":"registered S3method"},{"1":"print","2":"colorConverter","3":"FALSE","4":"registered S3method"},{"1":"print","2":"compactPDF","3":"FALSE","4":"registered S3method"},{"1":"print","2":"condition","3":"TRUE","4":"base"},{"1":"print","2":"connection","3":"TRUE","4":"base"},{"1":"print","2":"CRAN_package_reverse_dependencies_and_views","3":"FALSE","4":"registered S3method"},{"1":"print","2":"crayon","3":"FALSE","4":"registered S3method"},{"1":"print","2":"data.frame","3":"TRUE","4":"base"},{"1":"print","2":"data.table","3":"FALSE","4":"registered S3method"},{"1":"print","2":"Date","3":"TRUE","4":"base"},{"1":"print","2":"default","3":"TRUE","4":"base"},{"1":"print","2":"dendrogram","3":"FALSE","4":"registered S3method"},{"1":"print","2":"density","3":"FALSE","4":"registered S3method"},{"1":"print","2":"difftime","3":"TRUE","4":"base"},{"1":"print","2":"dist","3":"FALSE","4":"registered S3method"},{"1":"print","2":"Dlist","3":"TRUE","4":"base"},{"1":"print","2":"DLLInfo","3":"TRUE","4":"base"},{"1":"print","2":"DLLInfoList","3":"TRUE","4":"base"},{"1":"print","2":"DLLRegisteredRoutines","3":"TRUE","4":"base"},{"1":"print","2":"document_context","3":"FALSE","4":"registered S3method"},{"1":"print","2":"document_position","3":"FALSE","4":"registered S3method"},{"1":"print","2":"document_range","3":"FALSE","4":"registered S3method"},{"1":"print","2":"document_selection","3":"FALSE","4":"registered S3method"},{"1":"print","2":"dummy_coef","3":"FALSE","4":"registered S3method"},{"1":"print","2":"dummy_coef_list","3":"FALSE","4":"registered S3method"},{"1":"print","2":"ecdf","3":"FALSE","4":"registered S3method"},{"1":"print","2":"eigen","3":"TRUE","4":"base"},{"1":"print","2":"factanal","3":"FALSE","4":"registered S3method"},{"1":"print","2":"factor","3":"TRUE","4":"base"},{"1":"print","2":"family","3":"FALSE","4":"registered S3method"},{"1":"print","2":"fileSnapshot","3":"FALSE","4":"registered S3method"},{"1":"print","2":"findLineNumResult","3":"FALSE","4":"registered S3method"},{"1":"print","2":"formula","3":"FALSE","4":"registered S3method"},{"1":"print","2":"frame","3":"FALSE","4":"registered S3method"},{"1":"print","2":"fseq","3":"FALSE","4":"registered S3method"},{"1":"print","2":"ftable","3":"FALSE","4":"registered S3method"},{"1":"print","2":"function","3":"TRUE","4":"base"},{"1":"print","2":"getAnywhere","3":"FALSE","4":"registered S3method"},{"1":"print","2":"glm","3":"FALSE","4":"registered S3method"},{"1":"print","2":"glue","3":"FALSE","4":"registered S3method"},{"1":"print","2":"grouped_df","3":"FALSE","4":"registered S3method"},{"1":"print","2":"hclust","3":"FALSE","4":"registered S3method"},{"1":"print","2":"help_files_with_topic","3":"FALSE","4":"registered S3method"},{"1":"print","2":"hexmode","3":"TRUE","4":"base"},{"1":"print","2":"HoltWinters","3":"FALSE","4":"registered S3method"},{"1":"print","2":"hsearch","3":"FALSE","4":"registered S3method"},{"1":"print","2":"hsearch_db","3":"FALSE","4":"registered S3method"},{"1":"print","2":"htest","3":"FALSE","4":"registered S3method"},{"1":"print","2":"html","3":"FALSE","4":"registered S3method"},{"1":"print","2":"html_dependency","3":"FALSE","4":"registered S3method"},{"1":"print","2":"htmlwidget","3":"FALSE","4":"registered S3method"},{"1":"print","2":"infl","3":"FALSE","4":"registered S3method"},{"1":"print","2":"integrate","3":"FALSE","4":"registered S3method"},{"1":"print","2":"isoreg","3":"FALSE","4":"registered S3method"},{"1":"print","2":"json","3":"FALSE","4":"registered S3method"},{"1":"print","2":"kmeans","3":"FALSE","4":"registered S3method"},{"1":"print","2":"knit_asis","3":"FALSE","4":"registered S3method"},{"1":"print","2":"knit_image_paths","3":"FALSE","4":"registered S3method"},{"1":"print","2":"knitr_kable","3":"FALSE","4":"registered S3method"},{"1":"print","2":"Latex","3":"FALSE","4":"registered S3method"},{"1":"print","2":"LaTeX","3":"FALSE","4":"registered S3method"},{"1":"print","2":"libraryIQR","3":"TRUE","4":"base"},{"1":"print","2":"lifecycle_warning_deprecated","3":"FALSE","4":"registered S3method"},{"1":"print","2":"listof","3":"TRUE","4":"base"},{"1":"print","2":"lm","3":"FALSE","4":"registered S3method"},{"1":"print","2":"loadings","3":"FALSE","4":"registered S3method"},{"1":"print","2":"loess","3":"FALSE","4":"registered S3method"},{"1":"print","2":"logLik","3":"FALSE","4":"registered S3method"},{"1":"print","2":"ls_str","3":"FALSE","4":"registered S3method"},{"1":"print","2":"medpolish","3":"FALSE","4":"registered S3method"},{"1":"print","2":"method_table","3":"FALSE","4":"registered S3method"},{"1":"print","2":"MethodsFunction","3":"FALSE","4":"registered S3method"},{"1":"print","2":"mtable","3":"FALSE","4":"registered S3method"},{"1":"print","2":"NativeRoutineList","3":"TRUE","4":"base"},{"1":"print","2":"news_db","3":"FALSE","4":"registered S3method"},{"1":"print","2":"nls","3":"FALSE","4":"registered S3method"},{"1":"print","2":"noquote","3":"TRUE","4":"base"},{"1":"print","2":"numeric_version","3":"TRUE","4":"base"},{"1":"print","2":"object_size","3":"FALSE","4":"registered S3method"},{"1":"print","2":"octmode","3":"TRUE","4":"base"},{"1":"print","2":"packageDescription","3":"FALSE","4":"registered S3method"},{"1":"print","2":"packageInfo","3":"TRUE","4":"base"},{"1":"print","2":"packageIQR","3":"FALSE","4":"registered S3method"},{"1":"print","2":"packageStatus","3":"FALSE","4":"registered S3method"},{"1":"print","2":"paged_df","3":"FALSE","4":"registered S3method"},{"1":"print","2":"pairwise.htest","3":"FALSE","4":"registered S3method"},{"1":"print","2":"person","3":"FALSE","4":"registered S3method"},{"1":"print","2":"pillar","3":"FALSE","4":"registered S3method"},{"1":"print","2":"pillar_colonnade","3":"FALSE","4":"registered S3method"},{"1":"print","2":"pillar_ornament","3":"FALSE","4":"registered S3method"},{"1":"print","2":"pillar_shaft","3":"FALSE","4":"registered S3method"},{"1":"print","2":"pillar_squeezed_colonnade","3":"FALSE","4":"registered S3method"},{"1":"print","2":"pillar_vertical","3":"FALSE","4":"registered S3method"},{"1":"print","2":"POSIXct","3":"TRUE","4":"base"},{"1":"print","2":"POSIXlt","3":"TRUE","4":"base"},{"1":"print","2":"power.htest","3":"FALSE","4":"registered S3method"},{"1":"print","2":"ppr","3":"FALSE","4":"registered S3method"},{"1":"print","2":"prcomp","3":"FALSE","4":"registered S3method"},{"1":"print","2":"princomp","3":"FALSE","4":"registered S3method"},{"1":"print","2":"proc_time","3":"TRUE","4":"base"},{"1":"print","2":"purrr_function_compose","3":"FALSE","4":"registered S3method"},{"1":"print","2":"purrr_function_partial","3":"FALSE","4":"registered S3method"},{"1":"print","2":"purrr_rate_backoff","3":"FALSE","4":"registered S3method"},{"1":"print","2":"purrr_rate_delay","3":"FALSE","4":"registered S3method"},{"1":"print","2":"quosure","3":"FALSE","4":"registered S3method"},{"1":"print","2":"quosures","3":"FALSE","4":"registered S3method"},{"1":"print","2":"raster","3":"FALSE","4":"registered S3method"},{"1":"print","2":"Rcpp_stack_trace","3":"FALSE","4":"registered S3method"},{"1":"print","2":"Rd","3":"FALSE","4":"registered S3method"},{"1":"print","2":"recordedplot","3":"FALSE","4":"registered S3method"},{"1":"print","2":"restart","3":"TRUE","4":"base"},{"1":"print","2":"RGBcolorConverter","3":"FALSE","4":"registered S3method"},{"1":"print","2":"rlang_box_done","3":"FALSE","4":"registered S3method"},{"1":"print","2":"rlang_box_splice","3":"FALSE","4":"registered S3method"},{"1":"print","2":"rlang_data_pronoun","3":"FALSE","4":"registered S3method"},{"1":"print","2":"rlang_envs","3":"FALSE","4":"registered S3method"},{"1":"print","2":"rlang_error","3":"FALSE","4":"registered S3method"},{"1":"print","2":"rlang_fake_data_pronoun","3":"FALSE","4":"registered S3method"},{"1":"print","2":"rlang_lambda_function","3":"FALSE","4":"registered S3method"},{"1":"print","2":"rlang_trace","3":"FALSE","4":"registered S3method"},{"1":"print","2":"rlang_zap","3":"FALSE","4":"registered S3method"},{"1":"print","2":"rle","3":"TRUE","4":"base"},{"1":"print","2":"roman","3":"FALSE","4":"registered S3method"},{"1":"print","2":"rowwise_df","3":"FALSE","4":"registered S3method"},{"1":"print","2":"rule","3":"FALSE","4":"registered S3method"},{"1":"print","2":"scalar","3":"FALSE","4":"registered S3method"},{"1":"print","2":"sessionInfo","3":"FALSE","4":"registered S3method"},{"1":"print","2":"shiny.tag","3":"FALSE","4":"registered S3method"},{"1":"print","2":"shiny.tag.list","3":"FALSE","4":"registered S3method"},{"1":"print","2":"simple.list","3":"TRUE","4":"base"},{"1":"print","2":"smooth.spline","3":"FALSE","4":"registered S3method"},{"1":"print","2":"socket","3":"FALSE","4":"registered S3method"},{"1":"print","2":"srcfile","3":"TRUE","4":"base"},{"1":"print","2":"srcref","3":"TRUE","4":"base"},{"1":"print","2":"stepfun","3":"FALSE","4":"registered S3method"},{"1":"print","2":"stl","3":"FALSE","4":"registered S3method"},{"1":"print","2":"StructTS","3":"FALSE","4":"registered S3method"},{"1":"print","2":"subdir_tests","3":"FALSE","4":"registered S3method"},{"1":"print","2":"summarize_CRAN_check_status","3":"FALSE","4":"registered S3method"},{"1":"print","2":"summary.aov","3":"FALSE","4":"registered S3method"},{"1":"print","2":"summary.aovlist","3":"FALSE","4":"registered S3method"},{"1":"print","2":"summary.ecdf","3":"FALSE","4":"registered S3method"},{"1":"print","2":"summary.glm","3":"FALSE","4":"registered S3method"},{"1":"print","2":"summary.lm","3":"FALSE","4":"registered S3method"},{"1":"print","2":"summary.loess","3":"FALSE","4":"registered S3method"},{"1":"print","2":"summary.manova","3":"FALSE","4":"registered S3method"},{"1":"print","2":"summary.nls","3":"FALSE","4":"registered S3method"},{"1":"print","2":"summary.packageStatus","3":"FALSE","4":"registered S3method"},{"1":"print","2":"summary.ppr","3":"FALSE","4":"registered S3method"},{"1":"print","2":"summary.prcomp","3":"FALSE","4":"registered S3method"},{"1":"print","2":"summary.princomp","3":"FALSE","4":"registered S3method"},{"1":"print","2":"summary.table","3":"TRUE","4":"base"},{"1":"print","2":"summary.warnings","3":"TRUE","4":"base"},{"1":"print","2":"summaryDefault","3":"TRUE","4":"base"},{"1":"print","2":"table","3":"TRUE","4":"base"},{"1":"print","2":"tables_aov","3":"FALSE","4":"registered S3method"},{"1":"print","2":"tbl","3":"FALSE","4":"registered S3method"},{"1":"print","2":"tbl_df","3":"FALSE","4":"registered S3method"},{"1":"print","2":"tbl_lazy","3":"FALSE","4":"registered S3method"},{"1":"print","2":"tbl_sql","3":"FALSE","4":"registered S3method"},{"1":"print","2":"terms","3":"FALSE","4":"registered S3method"},{"1":"print","2":"tree","3":"FALSE","4":"registered S3method"},{"1":"print","2":"trunc_mat","3":"FALSE","4":"registered S3method"},{"1":"print","2":"ts","3":"FALSE","4":"registered S3method"},{"1":"print","2":"tskernel","3":"FALSE","4":"registered S3method"},{"1":"print","2":"TukeyHSD","3":"FALSE","4":"registered S3method"},{"1":"print","2":"tukeyline","3":"FALSE","4":"registered S3method"},{"1":"print","2":"tukeysmooth","3":"FALSE","4":"registered S3method"},{"1":"print","2":"undoc","3":"FALSE","4":"registered S3method"},{"1":"print","2":"vctrs_sclr","3":"FALSE","4":"registered S3method"},{"1":"print","2":"vctrs_unspecified","3":"FALSE","4":"registered S3method"},{"1":"print","2":"vctrs_vctr","3":"FALSE","4":"registered S3method"},{"1":"print","2":"vignette","3":"FALSE","4":"registered S3method"},{"1":"print","2":"warnings","3":"TRUE","4":"base"},{"1":"print","2":"xfun_raw_string","3":"FALSE","4":"registered S3method"},{"1":"print","2":"xfun_strict_list","3":"FALSE","4":"registered S3method"},{"1":"print","2":"xgettext","3":"FALSE","4":"registered S3method"},{"1":"print","2":"xngettext","3":"FALSE","4":"registered S3method"},{"1":"print","2":"xtabs","3":"FALSE","4":"registered S3method"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[249]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuczNfbWV0aG9kc19jbGFzcyhcIm9yZGVyZWRcIilcbmBgYCJ9 -->
+<pre class="r"><code>s3_methods_class(&quot;ordered&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6NCwibnJvdyI6NH0sInJkZiI6Ikg0c0lBQUFBQUFBQUE1VlN6VzZETUF3MlB5a3FFbE9sdnNCZUFBN3JwUTh3N1RwcDNhUmVVOGhvdEpDZ0pIVGJiUTgrbFFWSXFoTDFza1BpejQ3OTJaL2g1WEcvU2ZjcEFFUVFMY3lOREFUMDl2cVVid0hpMERnQnhMQWM3SmQ1WGhzUW03TWE3ZlNRWVZWVVdPUGlYZUtHMkdEMDNDb0xFMGtZT1JIbTNGM1hORmgrZXl5SmtCV1JwUHFmQzVEYWlRSjd3TnByN3ZpQUZibUIxNUxVVk9tQjZYNjNhWWcraW1xV050OEE0a2FmOHVldUNTZVNsaTZuWkZoZGxKK29vZ2ZtMmkyVTZHVHBzeTZsK0N3Y2MyWk8rR091dnU5Ly9mWVQ5ZFRlQmRPcnpRT2N2WkpFdEpvS2JvckM0Y3NocnppUVhtRFY4V0dTS2krUEhmL0lIN1oyd1c2eG1jWHhIQTg5dzk1eUlhZVc4SnB5cHgweGZMajhBbmRHOHFpNGFDWGwya2t4VVZWb29iSExTMHZCWEdRVUIrYy9zcUMrOUxFQ0FBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["generic"],"name":[1],"type":["chr"],"align":["left"]},{"label":["class"],"name":[2],"type":["chr"],"align":["left"]},{"label":["visible"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["source"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"as.data.frame","2":"ordered","3":"TRUE","4":"base"},{"1":"Ops","2":"ordered","3":"TRUE","4":"base"},{"1":"relevel","2":"ordered","3":"FALSE","4":"registered S3method"},{"1":"Summary","2":"ordered","3":"TRUE","4":"base"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[4]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuczNfbWV0aG9kc19nZW5lcmljKFwicmVsZXZlbFwiKVxuYGBgIn0= -->
+<pre class="r"><code>s3_methods_generic(&quot;relevel&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6NCwibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUE1MVNTMjdESUJERkh4TEZVcXBJdVVBdllDK2FUUTVROVFEOVNOa1NHRHVvQkNMQWFaZTllT09PYmFnU2J5clZFbmhtM3J5WmVjRHo0MjVUN0FwQ1NFYXlHZTRVVFVMZlhwL0tMU0Y1aWs1Q2NyTG8vNThJcjlISWNhMEd4Z2pNTFNnNGcvckRuWkFFMUt4VlByaXptbkZ2YkFTTkZXQkJvRG1PZHZ0ZDExbGJhS1R6ZmZiOXkrWUkvbURFUDZGYnVWU3pJN2pRTFkrRE5hREJTaDV6dUdMT1Jld3NuZHdyaUlxY2FTMkhTZFdGTlI5VnJMekVsWDdoMW5YZDk3VDlXSHBzSDRPRllKNVZ0VVUrZXBjSlpXNU9YaHFOcExTL0pqb2hKM1lTV0xXNm4wU1UvTkRxOS9KaEc0NDdDY2U4REhaMlplZGp6N1FMdFdoVUM3cVJPbXFuaXUxL0g4QWRTaDRVVnljcmRiendBcU91OHNhem1GZHdvMkprRUVjdVA2WXk4bktlQWdBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["generic"],"name":[1],"type":["chr"],"align":["left"]},{"label":["class"],"name":[2],"type":["chr"],"align":["left"]},{"label":["visible"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["source"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"relevel","2":"default","3":"FALSE","4":"registered S3method"},{"1":"relevel","2":"factor","3":"FALSE","4":"registered S3method"},{"1":"relevel","2":"ordered","3":"FALSE","4":"registered S3method"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="exercises-2" class="section level3">
+<h3>Exercises</h3>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudFxuYGBgIn0= -->
+<pre class="r"><code>t</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiZnVuY3Rpb24gKHgpIFxuVXNlTWV0aG9kKFwidFwiKVxuPGJ5dGVjb2RlOiAweDdmZDQxN2VhOGFmMD5cbjxlbnZpcm9ubWVudDogbmFtZXNwYWNlOmJhc2U+XG4ifQ== -->
+<pre><code>function (x) 
+UseMethod(&quot;t&quot;)
+&lt;bytecode: 0x7fd417ea8af0&gt;
+&lt;environment: namespace:base&gt;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudC50ZXN0XG5gYGAifQ== -->
+<pre class="r"><code>t.test</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiZnVuY3Rpb24gKHgsIC4uLikgXG5Vc2VNZXRob2QoXCJ0LnRlc3RcIilcbjxieXRlY29kZTogMHg3ZmQ0MThlNmU2Zjg+XG48ZW52aXJvbm1lbnQ6IG5hbWVzcGFjZTpzdGF0cz5cbiJ9 -->
+<pre><code>function (x, ...) 
+UseMethod(&quot;t.test&quot;)
+&lt;bytecode: 0x7fd418e6e6f8&gt;
+&lt;environment: namespace:stats&gt;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnR5cGUodC50ZXN0KVxuYGBgIn0= -->
+<pre class="r"><code>ftype(t.test)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUzNcIiAgICAgIFwiZ2VuZXJpY1wiXG4ifQ== -->
+<pre><code>[1] &quot;S3&quot;      &quot;generic&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnR5cGUoZmFjdG9yKVxuYGBgIn0= -->
+<pre class="r"><code>ftype(factor)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiZnVuY3Rpb25cIlxuIn0= -->
+<pre><code>[1] &quot;function&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudG9vbHM6Om5vblMzbWV0aG9kcyhcInN0YXRzXCIpXG5gYGAifQ== -->
+<pre class="r"><code>tools::nonS3methods(&quot;stats&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYW5vdmEubG1saXN0XCIgICAgICAgIFwiZXhwYW5kLm1vZGVsLmZyYW1lXCIgIFwiZml0dGVkLnZhbHVlc1wiICAgICAgIFwiaW5mbHVlbmNlLm1lYXN1cmVzXCIgIFwibGFnLnBsb3RcIiAgICAgICAgICAgXG5bNl0gXCJ0LnRlc3RcIiAgICAgICAgICAgICAgXCJwbG90LnNwZWMucGhhc2VcIiAgICAgXCJwbG90LnNwZWMuY29oZXJlbmN5XCJcbiJ9 -->
+<pre><code>[1] &quot;anova.lmlist&quot;        &quot;expand.model.frame&quot;  &quot;fitted.values&quot;       &quot;influence.measures&quot;  &quot;lag.plot&quot;           
+[6] &quot;t.test&quot;              &quot;plot.spec.phase&quot;     &quot;plot.spec.coherency&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBzdHJ1Y3R1cmUoXG4gIDE6MTAsXG4gIGNsYXNzID0gXCJ0ZXN0XCJcbilcbnQoeClcbmBgYCJ9 -->
+<pre class="r"><code>x &lt;- structure(
+  1:10,
+  class = &quot;test&quot;
+)
+t(x)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdE9uZSBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICB4XG50ID0gNS43NDQ2LCBkZiA9IDksIHAtdmFsdWUgPSAwLjAwMDI3ODJcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHRydWUgbWVhbiBpcyBub3QgZXF1YWwgdG8gMFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIDMuMzM0MTQ5IDcuNjY1ODUxXG5zYW1wbGUgZXN0aW1hdGVzOlxubWVhbiBvZiB4IFxuICAgICAgNS41IFxuIn0= -->
+<pre><code>
+    One Sample t-test
+
+data:  x
+t = 5.7446, df = 9, p-value = 0.0002782
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ 3.334149 7.665851
+sample estimates:
+mean of x 
+      5.5 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueFxuYGBgIn0= -->
+<pre class="r"><code>x</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgMSAgMiAgMyAgNCAgNSAgNiAgNyAgOCAgOSAxMFxuYXR0cigsXCJjbGFzc1wiKVxuWzFdIFwidGVzdFwiXG4ifQ== -->
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10
+attr(,&quot;class&quot;)
+[1] &quot;test&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG54IDwtIHRhYmxlKDE6MTApXG5hdHRyaWJ1dGVzKHgpXG5gYGAifQ== -->
+<pre class="r"><code>
+x &lt;- table(1:10)
+attributes(x)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJGRpbVxuWzFdIDEwXG5cbiRkaW1uYW1lc1xuJGRpbW5hbWVzW1sxXV1cbiBbMV0gXCIxXCIgIFwiMlwiICBcIjNcIiAgXCI0XCIgIFwiNVwiICBcIjZcIiAgXCI3XCIgIFwiOFwiICBcIjlcIiAgXCIxMFwiXG5cblxuJGNsYXNzXG5bMV0gXCJ0YWJsZVwiXG4ifQ== -->
 <pre><code>$dim
 [1] 10
 
 $dimnames
-$dimnames$x
+$dimnames[[1]]
  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot;
 
 
 $class
 [1] &quot;table&quot;</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSB0YWJsZShtdGNhcnNbYyhcInZzXCIsIFwiY3lsXCIsIFwiYW1cIildKVxueFxuYGBgIn0= -->
-<pre class="r"><code>x &lt;- table(mtcars[c(&quot;vs&quot;, &quot;cyl&quot;, &quot;am&quot;)])
-x</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuczNfbWV0aG9kc19jbGFzcyhcInRhYmxlXCIpXG5gYGAifQ== -->
+<pre class="r"><code>s3_methods_class(&quot;table&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiLCAsIGFtID0gMFxuXG4gICBjeWxcbnZzICAgNCAgNiAgOFxuICAwICAwICAwIDEyXG4gIDEgIDMgIDQgIDBcblxuLCAsIGFtID0gMVxuXG4gICBjeWxcbnZzICAgNCAgNiAgOFxuICAwICAxICAzICAyXG4gIDEgIDcgIDAgIDBcbiJ9 -->
-<pre><code>, , am = 0
-
-   cyl
-vs   4  6  8
-  0  0  0 12
-  1  3  4  0
-
-, , am = 1
-
-   cyl
-vs   4  6  8
-  0  1  3  2
-  1  7  0  0</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGV2ZWxzKG10Y2FycyRhbSlcbmBgYCJ9 -->
-<pre class="r"><code>levels(mtcars$am)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
-<pre><code>NULL</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXRjYXJzJGFtXG5gYGAifQ== -->
-<pre class="r"><code>mtcars$am</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAxIDEgMSAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMSAxIDEgMCAwIDAgMCAwIDEgMSAxIDEgMSAxIDFcbiJ9 -->
-<pre><code> [1] 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZjEgPC0gZmFjdG9yKGxldHRlcnMpXG5mMVxuYGBgIn0= -->
-<pre class="r"><code>f1 &lt;- factor(letters)
-f1</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBhIGIgYyBkIGUgZiBnIGggaSBqIGsgbCBtIG4gbyBwIHEgciBzIHQgdSB2IHcgeCB5IHpcbkxldmVsczogYSBiIGMgZCBlIGYgZyBoIGkgaiBrIGwgbSBuIG8gcCBxIHIgcyB0IHUgdiB3IHggeSB6XG4ifQ== -->
-<pre><code> [1] a b c d e f g h i j k l m n o p q r s t u v w x y z
-Levels: a b c d e f g h i j k l m n o p q r s t u v w x y z</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXMuaW50ZWdlcihmMSlcbmBgYCJ9 -->
-<pre class="r"><code>as.integer(f1)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgMSAgMiAgMyAgNCAgNSAgNiAgNyAgOCAgOSAxMCAxMSAxMiAxMyAxNCAxNSAxNiAxNyAxOCAxOSAyMCAyMSAyMiAyMyAyNCAyNSAyNlxuIn0= -->
-<pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGV2ZWxzKGYxKSA8LSByZXYobGV2ZWxzKGYxKSlcbmYxXG5gYGAifQ== -->
-<pre class="r"><code>levels(f1) &lt;- rev(levels(f1))
-f1</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSB6IHkgeCB3IHYgdSB0IHMgciBxIHAgbyBuIG0gbCBrIGogaSBoIGcgZiBlIGQgYyBiIGFcbkxldmVsczogeiB5IHggdyB2IHUgdCBzIHIgcSBwIG8gbiBtIGwgayBqIGkgaCBnIGYgZSBkIGMgYiBhXG4ifQ== -->
-<pre><code> [1] z y x w v u t s r q p o n m l k j i h g f e d c b a
-Levels: z y x w v u t s r q p o n m l k j i h g f e d c b a</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXMuaW50ZWdlcihmMSlcbmBgYCJ9 -->
-<pre class="r"><code>as.integer(f1)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgMSAgMiAgMyAgNCAgNSAgNiAgNyAgOCAgOSAxMCAxMSAxMiAxMyAxNCAxNSAxNiAxNyAxOCAxOSAyMCAyMSAyMiAyMyAyNCAyNSAyNlxuIn0= -->
-<pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>The underlying integer values stay the same, but the levels are changed, making it look like the data as changed.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZjIgPC0gcmV2KGZhY3RvcihsZXR0ZXJzKSlcbmYzIDwtIGZhY3RvcihsZXR0ZXJzLCBsZXZlbHMgPSByZXYobGV0dGVycykpXG5cbmYyXG5gYGAifQ== -->
-<pre class="r"><code>f2 &lt;- rev(factor(letters))
-f3 &lt;- factor(letters, levels = rev(letters))
-
-f2</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSB6IHkgeCB3IHYgdSB0IHMgciBxIHAgbyBuIG0gbCBrIGogaSBoIGcgZiBlIGQgYyBiIGFcbkxldmVsczogYSBiIGMgZCBlIGYgZyBoIGkgaiBrIGwgbSBuIG8gcCBxIHIgcyB0IHUgdiB3IHggeSB6XG4ifQ== -->
-<pre><code> [1] z y x w v u t s r q p o n m l k j i h g f e d c b a
-Levels: a b c d e f g h i j k l m n o p q r s t u v w x y z</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZjNcbmBgYCJ9 -->
-<pre class="r"><code>f3</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBhIGIgYyBkIGUgZiBnIGggaSBqIGsgbCBtIG4gbyBwIHEgciBzIHQgdSB2IHcgeCB5IHpcbkxldmVsczogeiB5IHggdyB2IHUgdCBzIHIgcSBwIG8gbiBtIGwgayBqIGkgaCBnIGYgZSBkIGMgYiBhXG4ifQ== -->
-<pre><code> [1] a b c d e f g h i j k l m n o p q r s t u v w x y z
-Levels: z y x w v u t s r q p o n m l k j i h g f e d c b a</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>For f2 and f3 either the order of the factor elements or its levels are being reversed. For f1 both transformations are occurring.</p>
-</div>
-<div id="data-frames-and-tiblles" class="section level2">
-<h2>3.6 Data frames and tiblles</h2>
-<div id="list-columns" class="section level3">
-<h3>3.6.6 LIst columns</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYkeVsxXVxuXG5gYGAifQ== -->
-<pre class="r"><code>df$y[1]
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSAxIDJcbiJ9 -->
-<pre><code>[[1]]
-[1] 1 2</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWJibGUpXG5gYGAifQ== -->
-<pre class="r"><code>library(tibble)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoicGFja2FnZSDigJh0aWJibGXigJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiAzLjYuMlxuIn0= -->
-<pre><code>package ‘tibble’ was built under R version 3.6.2</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGliYmxlKFxuICB4ID0gMTozLFxuICB5ID0gbGlzdCgxOjIsIDE6MywgMTo0KVxuKVxuYGBgIn0= -->
-<pre class="r"><code>tibble(
-  x = 1:3,
-  y = list(1:2, 1:3, 1:4)
-)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUE2MVNTMDdETUJDZE9IR2hrVUNSZW81RVJXell3UUp4QUFSU2Q4aDFUWWxJN1pDNEFuYWNHSEVCYXNheGpWSUxkWVVYbnVmeHZEY2YrL1o2Y1o0dmNnQklJWjNnVGhFQ3ZiKzdLUzhBTW9LSEJES1lXdnVHMXpNRTFua3lNT3lsTzFzODgvYlQrd0x4bEt0Tnk3aCtxS1h1eFV0MG15MVpMMGFxaWJjN3k3U0tWK0RXNWRlKzlURStHekhPcHVhZzF2RS9haFdIdFBaR1J5WGJpQjVCTVFqK3p0T0Q5eWg4MnFuWEtsQnNUdktCbXpIbU85YmxEZXVEYm5EbUs2Wlo5ZGdoLzQ5U2psU3JheVdSUk94NzBZaWNkSkdqMkVwYnlhcmtUMXY1WEo3TmJRWS9EaGlOSmgxaDRuSm14bXRScnpVUmNsMUxFWXB2MkZJMDRZOWd5MFBIVmR2aE53bXRvTGV2dE5Jc3hPVmNOY0hqM21MM0EvL055TWJEQWdBQSJ9 -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6NCwibnJvdyI6MTF9LCJyZGYiOiJINHNJQUFBQUFBQUFBODFUelU3RE1BejJ1bVJqbllhUTlnSzhBSlZnSExnaUlSNkFIMmtTcDZ3MVc2UzJxWklNeG8yWDVycmliZkZXS2lURUNWbzUrV3pIZjRsOWR6T2R4Tk1ZQUxyUTdkRXFDWUo4ZkxnOXV3SVFFVEVkRUREWTdDdFNqd2tJb2hPaUlTdWVBcENxUWxzRVpxUmNraW12a21lckNneENjYjNTanZFQ1ZjYVd1UzV4cjZoeTR3UHVWVWFYbmpXeXNzUUZwdStXUmFIc0cxdDVwZk5XWnRLcldZNy9nQUdJdDJsdGJ2TkEzMzFOWGJNVU1WTU9mOEJqaTNQdFBGck1UdThuQmZxRnlmNUE5YXYwdnZhWUxLbFhYQ2hkOEVQUHNVU3JVejZUNXNweFIvUmZ0Tk9INis0NXM3UXB0cndPckhsTjJQT0lLSHFucGE3cmozYjRuZXRkZUJiR2pTNEdXTGRNK3FieTJwUmtGRzFtUTdhTU83WWxPRHFmSkpmMFg0U2U0TGNlQlR4c1lMR0xGZFhCaCtRcXNaelR2T3huUjgwd0Q4d3hsYnF0TkdtT1NreFNsM2pqRlorTFU1T3paRnNVckQ4QlpURGtwUXNFQUFBPSJ9 -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["x"],"name":[1],"type":["int"],"align":["right"]},{"label":["y"],"name":[2],"type":["list"],"align":["right"]}],"data":[{"1":"1","2":"<int [2]>"},{"1":"2","2":"<int [3]>"},{"1":"3","2":"<int [4]>"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+{"columns":[{"label":["generic"],"name":[1],"type":["chr"],"align":["left"]},{"label":["class"],"name":[2],"type":["chr"],"align":["left"]},{"label":["visible"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["source"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"[","2":"table","3":"TRUE","4":"base"},{"1":"aperm","2":"table","3":"TRUE","4":"base"},{"1":"as.data.frame","2":"table","3":"TRUE","4":"base"},{"1":"Axis","2":"table","3":"FALSE","4":"registered S3method"},{"1":"head","2":"table","3":"FALSE","4":"registered S3method"},{"1":"lines","2":"table","3":"FALSE","4":"registered S3method"},{"1":"plot","2":"table","3":"FALSE","4":"registered S3method"},{"1":"points","2":"table","3":"FALSE","4":"registered S3method"},{"1":"print","2":"table","3":"TRUE","4":"base"},{"1":"summary","2":"table","3":"TRUE","4":"base"},{"1":"tail","2":"table","3":"FALSE","4":"registered S3method"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[11]},"pages":{}}}
   </script>
 </div>
 <!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="exercises-3" class="section level3">
-<h3>3.6.8 Exercises</h3>
-<!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MCwibnJvdyI6MH0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyMVAyd3JDTUF6Tkx0MVlZU0w0SFJaa0lQc0E4UU5FWWE5MVZoblVkblFGL2ZwcFd0Y0h4L0xRbnB6a0pEbW5RMVBSaGdKQUFrbUdMMEVJNUhJK2JtdUFOTVlrZ2hRSzk3K3h2QUVmZndXaStGTU1DTllMeGNMb0Z3c041Wks2bFh3STZrRFNHN2VjM1EzcU1CdG5rbHozdHRNS1JiRzdoOHpFa1prUmVjWDJyR1k3TjlqVHZ5aVhzVnNWZjZZUlpCcVJDZlhvbEFnM1MzNFZja3BXNk5BYlpMM3BsQTBPa0IyWTFaYUhQdHBxR1JqdkNjWXYxOThjYm40QkFBQT0ifQ== -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6NCwibnJvdyI6NH0sInJkZiI6Ikg0c0lBQUFBQUFBQUE1MVNTMjdESUJBZE95Wk9MS1dxbEF2MEFyVlV1WXNlb09vQitwR3lKVFp4a1RDNGdQdlo5ZUJWM0xFTlVjeXFLaGJ3M2d3end4djhlTDhyc2wwR0FBdFlMSEVsQ0lHOFBEOWMzd0VrTVpJSUVsZ1AreWU2dHdnU25KZmpQam1TVmlqck1HazFsNTZzM2pvcUxSZk04ZFIwVFVQMVZ4alB5dXJ3Snd5UXVmb1J6TWQ1UG1Jc3RjYVJyV1kxTjVacFZsMDlGUTJ6cjZyNnAydmVEaUpwdzB4UU9xMlpaSnFYL2t3cHFQRTNTZCs1NGZ0VE01WkdkYnBrUWRhMVZoKzV6N3pCR1gvajB2ZjlUMWgrU2oyVjk4YXNvcGJtQjQzeHlJNUJTS3BheTVYRW9IaDRSaElFUnpvd3JHNksvQmEvd3ZYZDkzempjRExIUTYyNGR6bUlWOGxremFYWFRBVGRNK0hJQlVvZGxlYm4vMHlHVnBOYlphay9sNVZLZU1zb0NvNi9SQVJ1SXJZQ0FBQT0ifQ== -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[],"data":[],"options":{"columns":{"min":{},"max":[10],"total":[0]},"rows":{"min":[10],"max":[10],"total":[0]},"pages":{}}}
+{"columns":[{"label":["generic"],"name":[1],"type":["chr"],"align":["left"]},{"label":["class"],"name":[2],"type":["chr"],"align":["left"]},{"label":["visible"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["source"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"plot","2":"ecdf","3":"TRUE","4":"stats"},{"1":"print","2":"ecdf","3":"FALSE","4":"registered S3method"},{"1":"quantile","2":"ecdf","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"ecdf","3":"FALSE","4":"registered S3method"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[4]},"pages":{}}}
   </script>
 </div>
 <!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBmdHlwZShwcmludClcbnMzX2dldF9tZXRob2QocHJpbnQuRGF0ZSlcblxuYGBgIn0= -->
+<pre class="r"><code># ftype(print)
+s3_get_method(print.Date)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiZnVuY3Rpb24gKHgsIG1heCA9IE5VTEwsIC4uLikgXG57XG4gICAgaWYgKGlzLm51bGwobWF4KSkgXG4gICAgICAgIG1heCA8LSBnZXRPcHRpb24oXCJtYXgucHJpbnRcIiwgOTk5OUwpXG4gICAgaWYgKG1heCA8IGxlbmd0aCh4KSkge1xuICAgICAgICBwcmludChmb3JtYXQoeFtzZXFfbGVuKG1heCldKSwgbWF4ID0gbWF4ICsgMSwgLi4uKVxuICAgICAgICBjYXQoXCIgWyByZWFjaGVkICdtYXgnIC8gZ2V0T3B0aW9uKFxcXCJtYXgucHJpbnRcXFwiKSAtLSBvbWl0dGVkXCIsIFxuICAgICAgICAgICAgbGVuZ3RoKHgpIC0gbWF4LCBcImVudHJpZXMgXVxcblwiKVxuICAgIH1cbiAgICBlbHNlIGlmIChsZW5ndGgoeCkpIFxuICAgICAgICBwcmludChmb3JtYXQoeCksIG1heCA9IG1heCwgLi4uKVxuICAgIGVsc2UgY2F0KGNsYXNzKHgpWzFMXSwgXCJvZiBsZW5ndGggMFxcblwiKVxuICAgIGludmlzaWJsZSh4KVxufVxuPGJ5dGVjb2RlOiAweDdmZDQxZGJiYjNjOD5cbjxlbnZpcm9ubWVudDogbmFtZXNwYWNlOmJhc2U+XG4ifQ== -->
+<pre><code>function (x, max = NULL, ...) 
+{
+    if (is.null(max)) 
+        max &lt;- getOption(&quot;max.print&quot;, 9999L)
+    if (max &lt; length(x)) {
+        print(format(x[seq_len(max)]), max = max + 1, ...)
+        cat(&quot; [ reached 'max' / getOption(\&quot;max.print\&quot;) -- omitted&quot;, 
+            length(x) - max, &quot;entries ]\n&quot;)
+    }
+    else if (length(x)) 
+        print(format(x), max = max, ...)
+    else cat(class(x)[1L], &quot;of length 0\n&quot;)
+    invisible(x)
+}
+&lt;bytecode: 0x7fd41dbbb3c8&gt;
+&lt;environment: namespace:base&gt;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGZbYygxLDEsMSksXVxuXG5gYGAifQ== -->
-<pre class="r"><code>df[c(1,1,1),]
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMSAxXG4ifQ== -->
-<pre><code>[1] 1 1 1</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
-</div>
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyBDaGFwdGVyIDMgLSBWZWN0b3JzCgojIyAzLjIgQXRvbWljIHZlY3RvcnMKIyMjIDMuMi41IEV4ZXJjaXNlcwpgYGB7ciAzLjIuNS4xfQo/cmF3Cnh4IDwtIHJhdygyKQoKYGBgCgpgYGB7ciAzLjIuNS4yfQpjKDEsIEZBTFNFKQpjKCJhIiwgMSkKYyhUUlVFLCAxTCkKCmBgYAoKYGBge3IgMy4yLjUuM30KCmBgYAoKIyMgMy4zIEF0dHJpYnV0ZXMKYGBge3J9CmEgPC0gMTo0CmF0dHIoYSwgIngiKSA8LSAiYWJjZGVmIgphdHRyKGEsICJ4IikKCmF0dHIoYSwgInkiKSA8LSA0OjYKc3RyKGF0dHJpYnV0ZXMoYSkpCgphIDwtIHN0cnVjdHVyZSgKICAxOjQsCiAgeCA9ICJhYmNkZWYiLAogIHkgPSA0OjYKKQpzdHIoYXR0cmlidXRlcyhhKSkKYGBgCgojIyMgMy4zLjQgRXhlcmNpc2VzCmBgYHtyIDMuMy40LjF9CnNldE5hbWVzCnVubmFtZQpgYGAKCmBgYHtyIDMuMy40LjJ9CnggPC0gMToxMAojIHJldHVybiBOVUxMCm5yb3coeCkKIz4gTlVMTApuY29sKHgpCiM+IE5VTEwKCiMgUHJldGVuZCBpdCdzIGEgY29sdW1uLXZlY3RvcgpOUk9XKHgpCiM+IFsxXSAxMApOQ09MKHgpCiM+IFsxXSAxCmBgYAoKYGBge3IgMy4zLjQuM30KeDEgPC0gYXJyYXkoMTo1LCBjKDEsIDEsIDUpKSAgIyAxIHJvdywgIDEgY29sdW1uLCAgNSBpbiB0aGlyZCBkaW1lbnNpb24KeDIgPC0gYXJyYXkoMTo1LCBjKDEsIDUsIDEpKSAgIyAxIHJvdywgIDUgY29sdW1ucywgMSBpbiB0aGlyZCBkaW1lbnNpb24KeDMgPC0gYXJyYXkoMTo1LCBjKDUsIDEsIDEpKSAgIyA1IHJvd3MsIDEgY29sdW1uLCAgMSBpbiB0aGlyZCBkaW1lbnNpb24KYGBgCgpgYGB7ciAzLjMuNC40fQpzdHJ1Y3R1cmUoMTo1LCBjb21tZW50ID0gIm15IGF0dHJpYnV0ZSIpCiM+IFsxXSAxIDIgMyA0IDUKYGBgCgpDb250cmFyeSB0byBvdGhlciBhdHRyaWJ1dGVzLCB0aGUgY29tbWVudCBpcyBub3QgcHJpbnRlZCAoYnkgcHJpbnQgb3IgcHJpbnQuZGVmYXVsdCkuCgpgYGB7cn0KZm9vIDwtIHN0cnVjdHVyZSgxOjUsIGNvbW1lbnQgPSAibXkgYXR0cmlidXRlIikKCmF0dHJpYnV0ZXMoZm9vKQojPiAkY29tbWVudAojPiBbMV0gIm15IGF0dHJpYnV0ZSIKYXR0cihmb28sIHdoaWNoID0gImNvbW1lbnQiKQojPiBbMV0gIm15IGF0dHJpYnV0ZSIKYGBgCgojIyMgMy40LjEgRkFjdG9ycwpgYGB7cn0KeCA8LSBmYWN0b3IoYygiYSIsICJiIiwgImIiLCAiYSIpKQp4Cgp0eXBlb2YoeCkKYXR0cmlidXRlcyh4KQpgYGAKCmBgYHtyfQpncmFkZSA8LSBvcmRlcmVkKGMoImIiLCAiYiIsICJhIiwgImMiKSwgbGV2ZWxzID0gYygiYyIsICJiIiwgImEiKSkKZ3JhZGUKYGBgCgojIyMgMy40LjUgRXhlcmNpc2VzCmBgYHtyIDMzLjQuNS4xfQp4IDwtIHNhbXBsZSgxOjEwLCAxZTQsIHJlcGxhY2UgPSBUUlVFKQp5IDwtIHRhYmxlKHgpCnkKdHlwZW9mKHkpCmF0dHJpYnV0ZXMoeSkKCnggPC0gdGFibGUobXRjYXJzW2MoInZzIiwgImN5bCIsICJhbSIpXSkKeApsZXZlbHMobXRjYXJzJGFtKQptdGNhcnMkYW0KYGBgCgpgYGB7ciAzLjQuNS4yfQpmMSA8LSBmYWN0b3IobGV0dGVycykKZjEKYXMuaW50ZWdlcihmMSkKbGV2ZWxzKGYxKSA8LSByZXYobGV2ZWxzKGYxKSkKZjEKYXMuaW50ZWdlcihmMSkKYGBgClRoZSB1bmRlcmx5aW5nIGludGVnZXIgdmFsdWVzIHN0YXkgdGhlIHNhbWUsIGJ1dCB0aGUgbGV2ZWxzIGFyZSBjaGFuZ2VkLCBtYWtpbmcgaXQgbG9vayBsaWtlIHRoZSBkYXRhIGFzIGNoYW5nZWQuCgpgYGB7ciAzLjQuNS4zfQpmMiA8LSByZXYoZmFjdG9yKGxldHRlcnMpKSAjIHJldmVyc2VzIGVsZW1lbnQgb3JkZXIgKG9ubHkpCmYzIDwtIGZhY3RvcihsZXR0ZXJzLCBsZXZlbHMgPSByZXYobGV0dGVycykpICAjIHJldmVyc2VzIGZhY3RvciBsZXZlbCBvcmRlciAob25seSkKCmYyCmYzCgpgYGAKRm9yIGYyIGFuZCBmMyBlaXRoZXIgdGhlIG9yZGVyIG9mIHRoZSBmYWN0b3IgZWxlbWVudHMgb3IgaXRzIGxldmVscyBhcmUgYmVpbmcgcmV2ZXJzZWQuIEZvciBmMSBib3RoIHRyYW5zZm9ybWF0aW9ucyBhcmUgb2NjdXJyaW5nLgoKCiMjIDMuNiBEYXRhIGZyYW1lcyBhbmQgdGlibGxlcwojIyMgMy42LjYgTElzdCBjb2x1bW5zCmBgYHtyfQpkZiA8LSBkYXRhLmZyYW1lKHggPSAxOjMpCmRmJHkgPC0gIGxpc3QoMToyLCAxOjMsIDE6NCkKZGYKCmRhdGEuZnJhbWUoCiAgeCA9IDE6MywgCiAgeSA9IEkobGlzdCgxOjIsIDE6MywgMTo0KSkKKQoKZGYkeVsxXQpgYGAKCmBgYHtyfQpsaWJyYXJ5KHRpYmJsZSkKdGliYmxlKAogIHggPSAxOjMsCiAgeSA9IGxpc3QoMToyLCAxOjMsIDE6NCkKKQpgYGAKCiMjIyAzLjYuOCBFeGVyY2lzZXMKYGBge3IgMy42LjguMX0KZGYgPC0gZGF0YS5mcmFtZSgpCmRmCmBgYAoKYGBge3IgMy42LjguMn0KZGYgPC0gZGF0YS5mcmFtZSh4ID0gMTozKQojIHJvdy5uYW1lcyhkZikgPC0gYygieCIsICJ5IiwgInkiKQoKcm93Lm5hbWVzKGRmKSA8LSBjKCJ4IiwgInkiLCAieiIpCmRmW2MoMSwgMSwgMSksICwgZHJvcCA9IEZBTFNFXQojPiAgICAgeAojPiB4ICAgMQojPiB4LjEgMQojPiB4LjIgMQoKZGZbYygxLDEsMSksXQpgYGAK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkoc2xvb3ApCmBgYAoKCiMgMTMuMiBCYXNpY3MKYGBge3J9CmYgPC0gZmFjdG9yKGMoImEiLCAiYiIsICJjIikpCgpwcmludChmKQpwcmludCh1bmNsYXNzKGYpKQpgYGAKCmBgYHtyfQpzM19kaXNwYXRjaChwcmludChmKSkKYGBgClRoaXMgaXMgYW4gUzMgbWV0aG9kIC0gYSBmdWNudGlvbiB3aWh0YSBhIHNwZWNpYWwgbmFtaW5nIHNjaGVtZSwgYGdlbmVyaWMuY2xhc3MoKWAuIAoKYGBge3J9CmZ0eXBlKHQudGVzdCkKZnR5cGUocHJpbnQpCmZ0eXBlKHQuZGF0YS5mcmFtZSkKYGBgCgojIyAxMy4yLjEgRXhlcmNpc2VzCmBgYHtyIDEzLjIuMS40fQpmdHlwZShtZWFuKQpgYGAKCmBgYHtyIDEzLjIuMS41fQp4IDwtIGVjZGYocnBvaXMoMTAwLCAxMCkpCngKCnNsb29wOjpvdHlwZSh4KQphdHRyaWJ1dGVzKHgpCnR5cGVvZih4KQpgYGAKCmBgYHtyIDEzLjIuMS42fQp4IDwtIHRhYmxlKHJwb2lzKDEwMCwgNSkpCngKCnR5cGVvZih4KQphdHRyaWJ1dGVzKHgpCm90eXBlKHgpCmBgYAoKIyAxMy4zIENsYXNzZXMKYGBge3J9CnggPC0gc3RydWN0dXJlKGxpc3QoKSwgY2xhc3MgPSAibXlfY2xhc3MiKQoKY2xhc3MoeCkKaW5oZXJpdHMoeCwgIm15X2NsYXNzIikKb3R5cGUoeCkKYGBgCgpgYGB7cn0KbW9kIDwtIGxtKGxvZyhtcGcpIH4gbG9nKGRpc3ApLCBkYXRhID0gbXRjYXJzKQpjbGFzcyhtb2QpCnR5cGVvZihtb2QpCnByaW50KG1vZCkKb3R5cGUobW9kKQphdHRyaWJ1dGVzKG1vZCkKCmNsYXNzKG1vZCkgPC0gIkRhdGUiCm90eXBlKG1vZCkKcHJpbnQobW9kKQpgYGAKCiMjIDEzLjMuMSBDb25zdHJ1Y3RvcnMKYGBge3J9Cm5ld19EYXRlIDwtIGZ1bmN0aW9uKHggPSBkb3VibGUoKSkgewogIHN0b3BpZm5vdChpcy5kb3VibGUoeCkpCiAgc3RydWN0dXJlKHgsIGNsYXNzID0gIkRhdGUiKQp9CgpuZXdfRGF0ZShjKC0xLCAwLCAxKSkKeCA8LSBuZXdfRGF0ZShjKC0xLCAwLCAxKSkKYGBgCgojIyAxMy4zLjIgVmFsaWRhdG9ycwpgYGB7cn0KbmV3X2ZhY3RvciA8LSBmdW5jdGlvbih4ID0gaW50ZWdlcigpLCBsZXZlbHMgPSBjaGFyYWN0ZXIoKSkgewogIHN0b3BpZm5vdChpcy5pbnRlZ2VyKHgpKQogIHN0b3BpZm5vdChpcy5jaGFyYWN0ZXIobGV2ZWxzKSkKICAKICBzdHJ1Y3R1cmUoCiAgICB4LCAKICAgIGxldmVscyA9IGxldmVscywgCiAgICBjbGFzcyA9ICJmYWN0b3IiCiAgKQp9CgpuZXdfZmFjdG9yKDE6NSwgImEiKQpgYGAKCmBgYHtyfQp2YWxpZGF0ZV9mYWN0b3IgPC0gZnVuY3Rpb24oeCkgewogIHZhbHVlcyA8LSB1bmNsYXNzKHgpCiAgbGV2ZWxzIDwtIGF0dHIoeCwgImxldmVscyIpCiAgCiAgaWYgKCFhbGwoIWlzLm5hKHZhbHVlcykgJiB2YWx1ZXMgPiAwKSkgewogICAgc3RvcCgKICAgICAgIkFsbCBgeGAgdmFsdWVzIG11c3QgYmUgbm9uLW1pc3NpbmcgYW5kIGdyZWF0ZXIgdGhhbiB6ZXJvIiwKICAgICAgY2FsbC4gPSBGQUxTRQogICAgKQogIH0KICAKICBpZiAobGVuZ3RoKGxldmVscykgPCBtYXgodmFsdWVzKSkgewogICAgc3RvcCgKICAgICAgIlRoZXJlIG11c3QgYmUgYXQgbGVhc3QgYXMgbWFueSBgbGV2ZWxzYCBhcyBwb3NzaWJsZSB2YWx1ZXMgaW4gYHhgIiwKICAgICAgY2FsbC4gPSBGQUxTRQogICAgKQogIH0KICB4CiAgCn0KCnZhbGlkYXRlX2ZhY3RvcihuZXdfZmFjdG9yKDE6NSwgImEiKSkKIyB2YWxpZGF0ZV9mYWN0b3IobmV3X2ZhY3RvcigxOjUsIHJlcCgiYSIsIHRpbWVzID0gNSkpKQpgYGAKCiMjIDEzLjMuMyBIZWxwZXJzCmBgYHtyfQoKYGBgCgojIyAxMy4zLjQgRXhlcmNpc2VzCmBgYHtyIDEzLjMuNC4xfQpkZiA8LSBkYXRhLmZyYW1lKCkKYXR0cmlidXRlcyhkZikKb3R5cGUoZGYpCnR5cGVvZihkZikKZnR5cGUoZGF0YS5mcmFtZSkKYGBgCgpgYGB7ciAxMy4zLjQuMn0KZmFjdG9yCmBgYAoKYGBge3J9Cj9tYXRjaAppbnRlcnNlY3QgPC0gZnVuY3Rpb24oeCwgeSkgeVttYXRjaCh4LCB5LCBub21hdGNoID0gMCldCmludGVyc2VjdCAjIHRoZSBSIGZ1bmN0aW9uIGluIGJhc2UgaXMgc2xpZ2h0bHkgbW9yZSBjYXJlZnVsCmludGVyc2VjdCgxOjEwLCA3OjIwKQptYXRjaCgxOjEwLCA3OjIwKQptYXRjaChjKCJhIiwgImEiLCAiYiIpLCB1bmlxdWUoYygiYSIsICJhIiwgImIiKSkpCm1hdGNoKGMoImEiLCAiYSIsICJiIiwgImMiKSwgYygiYSIsICJhIiwgImIiKSkKc2V0ZGlmZihjKCJhIiwgImEiLCAiYiIsICJjIiksIGMoImEiLCAiYSIsICJiIikpCgpgYGAKCmBgYHtyIDEzLjMuNC40fQpoZWxwKEMpCmBgYAoKYGBge3IgMTMuMy40LjV9CiMgdXRpbHM6OmFzLnJvbWFuKCkKeCA8LSBhcy5yb21hbigxOjEwKQp4CnR5cGVvZih4KQpvdHlwZSh4KQphdHRyaWJ1dGVzKHgpCnVuY2xhc3MoeCkKYGBgCmBgYHtyfQpuZXdfcm9tYW4gPC0gZnVuY3Rpb24oeCA9IGludGVnZXIoKSkgewogIHN0b3BpZm5vdChpcy5pbnRlZ2VyKHgpKQogIHN0cnVjdHVyZSgKICAgIHgsCiAgICBjbGFzcyA9ICJyb21hbiIKICApCn0KCm5ld19yb21hbigxOjEwKQoKYGBgCgpgYGB7cn0KdmFsaWRhdGVfcm9tYW4gPC0gZnVuY3Rpb24oeCkgewogIHZhbHVlcyA8LSB1bmNsYXNzKHgpCiAgaWYoYW55KHZhbHVlcyA8IDEgfCB2YWx1ZXMgPiAzODk5KSkgewogICAgc3RvcCgKICAgICAgIlJvbWFuIG51bWVyYWxzIG11c3QgZmFsbCBiZXR3ZWVuIDEgYW5kIDM4OTkiLAogICAgICBjYWxsLiA9IEZBTFNFCiAgICApCiAgfQogIHgKfQoKdmFsaWRhdGVfcm9tYW4obmV3X3JvbWFuKDE6MTApKQp2YWxpZGF0ZV9yb21hbihuZXdfcm9tYW4oMS4zKSkKaW50ZWdlcigxLjMpCmBgYAoKYGBge3J9CnJvbWFuIDwtIGZ1bmN0aW9uKHggPSBpbnRlZ2VyKCkpIHsKICB4IDwtIGFzLmludGVnZXIoeCkKICB2YWxpZGF0ZV9yb21hbihuZXdfcm9tYW4oeCkpCn0KCnJvbWFuKDE6MTApCnJvbWFuKDEuMykKYXMuaW50ZWdlcigxLjIpCmBgYAoKIyAxMy40IEdlbmVyaWNzIGFuZCBtZXRob2RzCmBgYHtyfQp4IDwtIFN5cy5EYXRlKCkKczNfZGlzcGF0Y2gocHJpbnQoeCkpCmZ0eXBlKHByaW50KQpgYGAKYGBge3J9CnMzX21ldGhvZHNfZ2VuZXJpYygibWVhbiIpCnMzX21ldGhvZHNfZ2VuZXJpYygicHJpbnQiKQpzM19tZXRob2RzX2NsYXNzKCJvcmRlcmVkIikKczNfbWV0aG9kc19nZW5lcmljKCJyZWxldmVsIikKYGBgCgojIyMgRXhlcmNpc2VzCmBgYHtyIDEzLjQuNC4xfQp0CnQudGVzdAoKZnR5cGUodC50ZXN0KQoKZnR5cGUoZmFjdG9yKQp0b29sczo6bm9uUzNtZXRob2RzKCJzdGF0cyIpCmBgYApgYGB7cn0KeCA8LSBzdHJ1Y3R1cmUoCiAgMToxMCwKICBjbGFzcyA9ICJ0ZXN0IgopCnQoeCkKeApgYGAKCmBgYHtyIDEzLjQuNC4yfQoKeCA8LSB0YWJsZSgxOjEwKQphdHRyaWJ1dGVzKHgpCnMzX21ldGhvZHNfY2xhc3MoInRhYmxlIikKYGBgCmBgYHtyIDEzLjQuNC4zfQpzM19tZXRob2RzX2NsYXNzKCJlY2RmIikKYGBgCmBgYHtyIDEzLjQuNC40fQpucm93KHMzX21ldGhvZHNfZ2VuZXJpYygicHJpbnQiKSkKIyBmdHlwZShwcmludCkKIyBzM19nZXRfbWV0aG9kKHByaW50LkRhdGUpCmBgYAoKYGBge3IgMTMuNC40LjV9CmhlbHAoIlVzZU1ldGhvZCIpCmBgYAoKCgoKCgoKCgoKCgoKCgo=</div>
 
 
 
