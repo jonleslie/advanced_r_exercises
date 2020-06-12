@@ -258,7 +258,196 @@ nrow(s3_methods_generic("print"))
 
 ```{r 13.4.4.5}
 help("UseMethod")
+g <- function(x) {
+  x <- 10
+  y <- 10
+  UseMethod("g")
+}
+g.default <- function(x) c(x = x, y = y)
+
+x <- 1
+y <- 1
+g(x)
+g.default(x)
 ```
+This is seemingly inconsistent: why does x come from the value defined inside of g(), and y still come from the global environment? It’s because UseMethod() calls g.default() in a special way so that variables defined inside the generic are available to methods. The exception is argument to the function: they are passed on as is, and cannot be affect by code inside the generic.
+
+```{r 13.4.4.6}
+help(`[`)
+ftype(`[`)
+# pryr::show_c_source(.Primitive("["))
+names(formals(`[.data.frame`))
+```
+
+# 13.5 Object styles
+## 13.5.1 Exercices
+```{r 13.5.1.1}
+x <- lm(mpg ~ disp, data = mtcars)
+attributes(x)
+length(x)
+typeof(x)
+length(unlist(x))
+```
+Vector object-style: factor(), table(), as.Date(), ordered()
+Record object-style: not observed
+Data frame object-style: not observed
+Scalar object-style: lm(), ecdf()
+
+# 13.6 Inheritance
+```{r}
+class(ordered("x"))
+s3_dispatch(print(ordered("x")))
+```
+
+```{r}
+new_secret <- function(x = double()) {
+  stopifnot(is.double(x))
+  structure(x, class = "secret")
+}
+print.secret <- function(x, ...) {
+  print(strrep("x", nchar(x)))
+  invisible(x)
+}
+
+x <- new_secret(c(15, 1, 456))
+x
+```
+
+This works, but the default method does not preserve the class:
+```{r}
+s3_dispatch(x[1])
+x[1]
+```
+
+```{r, eval=FALSE}
+`[.secret` <- function(x, i) {
+  new_secret(x[i])
+}
+```
+Won't work...infinite loop.
+
+```{r}
+`[.secret` <- function(x, i) {
+  x <- unclass(x)
+  new_secret(x[i])
+}
+x[1]
+```
+This works, but is inefficient because it creates a copy of x.
+
+```{r}
+`[.secret` <- function(x, i) {
+  new_secret(NextMethod())
+}
+x[1]
+```
+
+```{r}
+s3_dispatch(print(x))
+```
+
+```{r}
+new_secret <- function(x, ..., class = character()) {
+  stopifnot(is.double(x))
+  
+  structure(
+    x, 
+    ...,
+    class = c(class, "secret")
+  )
+}
+
+new_supersecret <- function(x) {
+  new_secret(x, class = "supersecret")
+}
+
+print.supersecret <- function(x, ...) {
+  print(rep("xxxxx", length(x)))
+  invisible(x)
+}
+
+x2 <- new_supersecret(c(15, 1, 456))
+x2
+```
+
+But methods are an issue. You can no longer use the constructor as it will return the same class regardless of the input.
+```{r}
+`[.secret` <- function(x, ...) {
+  new_secret(NextMethod())
+}
+x2[1:3]
+```
+In the above, the `[.secret` method returns a secret even if given a supersecret.
+
+Use the `vctrs` package
+```{r}
+library(vctrs)
+```
+
+```{r}
+vec_restore.secret <- function(x, to, ...) new_secret(x)
+vec_restore.supersecret <- function(x, to, ...) new_supersecret(x)
+```
+(If your class has attributes you'll need to pass them from `to` into the constructor.)
+
+Now can use `vec_restore()` in the `[.secret` method:
+```{r}
+`[.secret` <- function(x, ...) {
+  vctrs::vec_restore(NextMethod(), x)
+}
+x2[1:3]
+```
+
+## 13.6.3 Exercises
+```{r 13.6.3.1}
+# s3_dispatch(`x[.`)
+
+`[.Date`
+.Date
+```
+
+```{r}
+oldClass(Sys.Date())
+oldClass(numeric())
+oldClass(data.frame())
+oldClass(integer())
+```
+
+```{r 13.6.3.2}
+generics_t <- s3_methods_class("POSIXt")$generic
+generics_c <- s3_methods_class("POSIXct")$generic
+generics_l <- s3_methods_class("POSIXlt")$generic
+```
+
+```{r}
+# Subclass-specific methods
+union(generics_c, generics_l) 
+```
+
+```{r}
+# These generics share (inherited) methods for both subclasses
+setdiff(generics_t, union(generics_c, generics_l))
+```
+
+```{r 13.6.3.3}
+generic2 <- function(x) UseMethod("generic2")
+generic2.a1 <- function(x) "a1"
+generic2.a2 <- function(x) "a2"
+generic2.b <- function(x) {
+  class(x) <- "a1"
+  NextMethod()
+}
+
+generic2(structure(list(), class = c("b", "a2")))
+```
+
+```{r}
+s3_dispatch(generic2(x))
+```
+
+
+
+
 
 
 
