@@ -1,0 +1,88 @@
+---
+title: "What has AdvancedR done for me?"
+subtitle: "Jon (Leslie)"
+author: "R4DS Reading Group"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    includes:
+      after_body: insert-logo.html
+---
+
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#3092FF",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "300", "300i"),
+  code_font_google   = google_font("Droid Mono"),
+)
+```
+
+<style>
+.pull-more-left {
+  float: left;
+  width: 40%;
+}
+.pull-less-right {
+  float: right;
+  width: 56%;
+}
+.pull-less-right ~ * {
+  clear: both;
+}
+.remark-code-line {
+  font-size: 0.7em !important;
+}
+</style>
+
+# My job:
+
+.pull-more-left[
+- I'm on the data science team at Pivigo
+- I design data science projects for a living
+- The lone R enthusiast in a company of Pythonistas
+]
+
+.pull-right[
+![black-sheep](www/black_sheep.jpeg)
+]
+
+---
+
+class: inverse, hide-logo
+
+## BUT...
+(and this is important)
+- I also lead the team!
+
+.center[
+![burns](www/office-space-gary-cole.jpg)
+]
+
+
+---
+
+# Proselytizing R
+
+.center[
+![power](www/power.jpg)
+]
+- Creating internal DS tools
+- Running weekly TidyTuesday sessions
+- Delving into NSE
+- Running "design sprints", including the recent adoption of Shiny modules
+- Reprex guidelines for our training program
+
+---
+
+# Thank you, all!
+
+
+---
+
+---
+
+---
